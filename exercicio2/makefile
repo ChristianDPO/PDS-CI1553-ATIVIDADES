@@ -1,16 +1,16 @@
 parametrosCompilacao=-Wall #-Wshadow
-nomePrograma=aula
+nomePrograma=retangulo
 
 all: $(nomePrograma)
 
-$(nomePrograma): main.o Pessoa.o
-	g++ -o $(nomePrograma) main.o Pessoa.o $(parametrosCompilacao)
+$(nomePrograma): main.o Retangulo.o
+	g++ -o $(nomePrograma) main.o Retangulo.o $(parametrosCompilacao)
 
 main.o: main.cpp
 	g++ -c main.cpp $(parametrosCompilacao)
 
-Pessoa.o: Pessoa.hpp Pessoa.cpp
-	g++ -c Pessoa.cpp $(parametrosCompilacao)
+Retangulo.o: Retangulo.hpp Retangulo.cpp
+	g++ -c Retangulo.cpp $(parametrosCompilacao)
 
 clean:
 	rm -f *.o *.gch $(nomePrograma)
