@@ -22,3 +22,16 @@
 2. Pesquise em detalhes sobre #pragma once.
 3. Estude o make passado em aula, e leia sobre o uso do make para compilar programas C e C++.
 4. Crie uma classe que representa um retângulo. Crie objetos dessa classe no main e realize testes.
+
+## exercicio 3
+
+1. Modifique a classe retângulo solicitada na aula passada.
+    - a. Adicione os conceitos que você aprendeu na aula de hoje.
+    - b. Adicione uma função membro para:
+        - i. Retornar o perímetro do retângulo.
+        - ii. Retornar a área do retângulo.
+2. Pesquise sobre a classe string em C++ (biblioteca string).
+    - a. Dica: Para ler uma string com espaços, utilize a função global getline que está na biblioteca string, e no espaço de nomes std.
+    - Obs.: para proteger de buffer overflows, talvez seja melhor usar std::istream::getline e ler para um vetor de chars, e depois criar uma string a partir do vetor.
+    - Exemplo de uso std::getline(std::cin, nome)
+3. Leia sobre modelos anêmicos.
