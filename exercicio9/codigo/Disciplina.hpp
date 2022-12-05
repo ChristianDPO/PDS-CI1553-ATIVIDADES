@@ -11,7 +11,7 @@ class SalaAula;//Forward Declaration
 
 class Disciplina{
 	public:
-	Disciplina(std::string nome);
+		Disciplina(std::string nome);
 		Disciplina(std::string nome, SalaAula* sala);
 
 		std::string getNome();

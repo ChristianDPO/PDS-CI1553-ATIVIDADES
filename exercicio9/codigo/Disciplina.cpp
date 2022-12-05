@@ -74,6 +74,7 @@ void Disciplina::imprimirConteudosMinistrados(){
     }
 }
 
+//Essa função retorna a lista de conteudos
 std::list<ConteudoMinistrado*>& Disciplina::getConteudos(){
     return this->conteudos;
 }
