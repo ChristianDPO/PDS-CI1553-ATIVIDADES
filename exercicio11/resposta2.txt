@@ -1,0 +1,17 @@
+2. Considere o protótipo da função membro a seguir e explique o objetivo de cada const na função:
+
+const double* calcularImposto(const Investimento* const inv) const;
+
+Resposta:
+
+- o primeiro const indicar que o retorno da função é um ponteiro para
+double cujo dado não pode ser modificado (somente leitura)
+
+- O segundo const indicar que o parametro 'inv' é um ponteiro para
+um dado (uma classe Investimento) que não pode ser alterado (somente leitura)
+
+- O terceito const inficar que o ponteiro 'inv' não pode apontar pra nenhum 
+outro valor desde sua criação (aponta sempre para o mesmo dado, sem modificações)
+
+- o quarto const indicar que a função calcularImposto() garante que nenhum dado
+membro será modificado durante a sua execução
