@@ -5,12 +5,22 @@
 
 namespace frota {
 class Veiculo{
+    
     protected:
+        // static float aliquotaPadrao
+
         std::string placa;
-        unsigned int valor;
+        unsigned int valor;//em centavos
         unsigned int kmRodados;
+    
+        
     public:
         virtual ~Veiculo() = default;
+
+        const float calcularIPVA() const;
+        virtual const float calculaTaxaVeiculo() const;
+
+        
 };
 }
 

@@ -1,6 +1,7 @@
 # PraticaDesenvSW
 
-- Repositório para exercicios da disciplina de Prática de Desenvolvimento de Software (CI1553)
+- Repositório para a disciplina de Prática de Desenvolvimento de Software (CI1553)
+- Dividio em 'aulas' (código disponibilizado pelo professor depois das aulas) e 'exercicios' (exercicios pedidos pelo professor depois das aulas nos slides)
 
 ## Requisitos
 - Compilador g++
