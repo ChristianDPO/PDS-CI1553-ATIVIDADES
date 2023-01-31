@@ -22,9 +22,6 @@ class Disciplina {
     Disciplina(const Disciplina& disciplina);//construtor de copia
     Disciplina(Disciplina&& disciplina); //move asignment
 
-    // Disciplina& operator=(Disciplina&& disciplina);
-    // const Disciplina& operator=(const Disciplina& disciplina);
-
     virtual ~Disciplina();
 
     const std::string &getNome() const;

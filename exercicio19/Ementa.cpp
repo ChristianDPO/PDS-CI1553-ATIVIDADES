@@ -4,17 +4,17 @@
 namespace ufpr{
 
 Ementa::Ementa():livros{new std::list<Livro>}{
-    std::cout << "Construtor Ementa()\n";
+    // std::cout << "Construtor Ementa()\n";
 }
 
 Ementa::Ementa(const std::string descricao)
         :descricao{descricao}, livros{new std::list<Livro>}{
-    std::cout << "Construtor Ementa(descricao)\n";
+    // std::cout << "Construtor Ementa(descricao)\n";
 }
 
 Ementa::Ementa(const Ementa& ementa)
         :descricao{ementa.descricao}, livros{new std::list<Livro>{*(ementa.livros)}}{
-    std::cout << "Construtor de copia Ementa()\n";
+    // std::cout << "Construtor de copia Ementa()\n";
 }
 
 Ementa::Ementa(Ementa&& ementa)

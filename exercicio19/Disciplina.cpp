@@ -1,8 +1,9 @@
 #include "Disciplina.hpp"
+#include "SalaAula.hpp"
+#include "ConteudoMinistrado.hpp"
+#include "Pessoa.hpp"
 
 #include <iostream>
-
-#include "SalaAula.hpp"
 
 namespace ufpr{
 
@@ -25,10 +26,43 @@ Disciplina::Disciplina(const std::string& nome, SalaAula* const sala, const Enum
 }
 
 Disciplina::Disciplina(const Disciplina& disciplina)
-    :nome{disciplina.nome}, cargaHoraria{disciplina.cargaHoraria}, professor{new Professor{*(disciplina.professor)}}, tipo{disciplina.tipo}, ementa{disciplina.ementa}{
-    this->setSalaAula(disciplina.sala);
+    :nome{disciplina.nome}, cargaHoraria{disciplina.cargaHoraria}, 
+    sala{disciplina.sala}, tipo{disciplina.tipo}, ementa{disciplina.ementa}
+    {
+    
+    std::cout << "Chamando Disciplina Construtor de Copia\n";
+    
+    if(disciplina.professor != nullptr){
+        Professor* p1{new Professor{*(disciplina.professor)}};
+        this->professor = p1;
+    }
+
+    std::list<ConteudoMinistrado*>::const_iterator it;
+    for (it = disciplina.conteudos.begin(); it != disciplina.conteudos.end(); ++it){
+        this->conteudos.push_back(new ConteudoMinistrado{**(it)});
+    }
+
+    std::list<Pessoa*>::const_iterator itP;
+    for (itP = disciplina.alunos.begin(); itP != disciplina.alunos.end(); ++itP){
+        this->alunos.push_back(new Pessoa{**(itP)});
+    }
+        
 }
 
+Disciplina::Disciplina(Disciplina&& disciplina)
+    :nome{disciplina.nome}, cargaHoraria{disciplina.cargaHoraria}, 
+    sala{disciplina.sala}, tipo{disciplina.tipo}, ementa{disciplina.ementa},
+    conteudos{disciplina.conteudos}, alunos{disciplina.alunos}
+{
+    
+    std::cout << "Chamando Disciplina Move Asignment\n";
+
+    disciplina.professor = nullptr;
+    disciplina.sala = nullptr;
+    disciplina.conteudos.empty();
+    disciplina.alunos.empty();
+    
+}
 
 Disciplina::~Disciplina() {
     // o setSalaAula vai remover a disciplina da sala de aula antiga, caso ela
@@ -76,6 +110,17 @@ void Disciplina::imprimirDados(const std::string& cabecalho,
     std::cout << "Carga: " << this->cargaHoraria << std::endl;
     std::cout << "Porcentagem do curso: " << pctCurso << "%" << std::endl;
     std::cout << "Professor: " << this->professor->getNome() << std::endl;
+    std::cout << "Alunos:\n\n";
+    
+    std::list<Pessoa*>::const_iterator itP;
+    for (itP = this->alunos.begin(); itP != this->alunos.end(); ++itP){
+        std::cout << "Nome: " << (*itP)->getNome() << std::endl;
+        std::cout << "CPF: " << (*itP)->getCpf() << std::endl;
+    }
+
+    std::cout << "\nCounteudos:\n\n";
+    this->imprimirConteudosMinistrados();  
+
 }
 
 void Disciplina::adicionarConteudoMinistrado(
