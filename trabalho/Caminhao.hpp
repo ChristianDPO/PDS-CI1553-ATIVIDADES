@@ -9,7 +9,7 @@ namespace frota {
  * Classe que representa um Caminhao
  * 
  * @param modelo string Nome/modelo do Caminhao
- * @param ano unsigned int Ano de fabricacao do veiculo
+ * @param ano unsigned int Ano de fabricacao do veiculo (1886 ate 2023)
  * @param placa string Numero da placa do veiculo (7 digitos alfanumericos)
  * @param chassi string Numero do chassi do veiculo (17 digitos alfanumericos)
  * @param renavam unsigned long Numero do Renavam do veiculo (11 digitos numericos)
