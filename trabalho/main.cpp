@@ -9,6 +9,7 @@
 #include "EnumTipoCaminhao.hpp"
 #include "Moto.hpp"
 #include "EnumTipoMoto.hpp"
+#include "Van.hpp"
 
 int main(){
 
@@ -27,8 +28,12 @@ int main(){
 		33333333333, 8000.50, frota::EnumTipoMoto::PADRAO
 	}};
 
+	frota::Van* van1{new frota::Van{"Volkswagen", 2018, "DDD1234", "4ABCDEFGHJ1234567", 
+		44444444444, 22000.50, frota::EnumTipoCarro::ENTREGA, 100
+	}};
 
 	pont_lista->push_back(car1);
+	pont_lista->push_back(van1);
 	pont_lista->push_back(cam1);
 	pont_lista->push_back(mot1);
 

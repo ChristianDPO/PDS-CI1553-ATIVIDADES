@@ -18,7 +18,7 @@ Moto::Moto(const std::string& modelo, const unsigned int ano, const std::string&
  */
 void Moto::imprimeDadosPorTipoVeiculo() const {
     std::cout << "* Tipo do Veículo: Moto" << std::endl;
-    std::cout << "* Tipo do Moto: ";
+    std::cout << "* Tipo da Moto: ";
     
     if(this->tipoMoto == frota::EnumTipoMoto::SCOOTER){
         std::cout << "SCOOTER";

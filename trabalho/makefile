@@ -3,8 +3,8 @@ nomePrograma=frota
 
 all: $(nomePrograma)
 
-$(nomePrograma): main.o Veiculo.o Carro.o Caminhao.o Moto.o
-	g++ -o $(nomePrograma) main.o Veiculo.o Carro.o Caminhao.o Moto.o $(parametrosCompilacao)
+$(nomePrograma): main.o Veiculo.o Carro.o Caminhao.o Moto.o Van.o
+	g++ -o $(nomePrograma) main.o Veiculo.o Carro.o Caminhao.o Moto.o Van.o $(parametrosCompilacao)
 
 main.o: main.cpp
 	g++ -c main.cpp $(parametrosCompilacao)
@@ -20,6 +20,9 @@ Caminhao.o: Caminhao.cpp Caminhao.hpp
 
 Moto.o: Moto.cpp Moto.hpp
 	g++ -c Moto.cpp $(parametrosCompilacao)
+
+Van.o: Van.cpp Van.hpp
+	g++ -c Van.cpp $(parametrosCompilacao)
 
 clean:
 	rm -f *.o *.gch $(nomePrograma)
