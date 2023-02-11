@@ -42,12 +42,12 @@ void Veiculo::imprimeDadosVeiculo() const {
     std::cout << "- Modelo: " << this->modelo << std::endl;
     std::cout << "- Ano: " << this->ano << std::endl;
     std::cout << "- Placa: " << this->placa << std::endl;
-    std::cout << "- Número do Chassi: " << this->ano << std::endl;
+    std::cout << "- Número do Chassi: " << this->chassi << std::endl;
     std::cout << "- Número do Renavam: " << this->renavam << std::endl;
-    std::cout << "- Valor de Venda: ";
+    std::cout << "- Valor de Venda: R$";
     std::cout << std::fixed << std::setprecision(2) << (float) this->valorVenda/100 << std::endl;
-    std::cout << "- Valor do IPVA: ";
+    std::cout << "- Valor do IPVA: R$";
     std::cout << std::fixed << std::setprecision(2) << (float) this->calcularIPVA()/100 << std::endl;
-    std::cout << "- Valor da Taxa de uso: ";
+    std::cout << "- Valor da Taxa de uso: R$";
     std::cout << std::fixed << std::setprecision(2) << (float) this->calcularTaxaVeiculo()/100 << std::endl;
 }

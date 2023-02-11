@@ -6,7 +6,7 @@ using namespace frota;
 
 Carro::Carro(const std::string& modelo, const unsigned int ano, const std::string& placa, 
         const std::string& chassi, const unsigned long renavam, const float valorVenda,
-        frota::EnumTipoCarro tipoCarro)
+        const frota::EnumTipoCarro tipoCarro)
     :Veiculo{modelo, ano, placa, chassi, renavam, valorVenda}{
     this->tipoCarro = tipoCarro;
 }
@@ -17,7 +17,16 @@ Carro::Carro(const std::string& modelo, const unsigned int ano, const std::strin
  * @return void
  */
 void Carro::imprimeDadosPorTipoVeiculo() const {
-    std::cout << "Tipo do Veículo: Carro" << std::endl;
+    std::cout << "* Tipo do Veículo: Carro" << std::endl;
+    std::cout << "* Tipo do Carro: ";
+    
+    if(this->tipoCarro == frota::EnumTipoCarro::VIAGEM){
+        std::cout << "VIAGEM";
+    }
+    else{
+        std::cout << "ENTREGA";
+    }
+    std::cout << std::endl;
 }
 
 /**
