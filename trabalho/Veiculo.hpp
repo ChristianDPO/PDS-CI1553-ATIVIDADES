@@ -38,7 +38,7 @@ class Veiculo{
         virtual void imprimeDadosPorTipoVeiculo() const = 0;
         
         /**
-         * Calcula o valor da taxa ser cobrada pelo uso do veiculo, em centavos 
+         * Calcula o valor da taxa ser cobrada pelo uso do veiculo, em centavos
          * 
          * @return unsigned long O valor da taxa do veiculo em centavos
          */
