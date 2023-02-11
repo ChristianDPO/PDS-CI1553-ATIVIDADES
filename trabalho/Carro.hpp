@@ -5,7 +5,7 @@
 
 namespace frota {
 /**
- * Classe que representa um veiculo generico
+ * Classe que representa um Carro
  * 
  * @param modelo string Nome/modelo do carro
  * @param ano unsigned int Ano de fabricacao do veiculo
@@ -16,6 +16,14 @@ namespace frota {
  */ 
 class Carro: public Veiculo{
     
+    protected:
+
+        /**
+         * Imprime os dados especificos do determinado tipo do veiculo
+         * @returns void
+         */
+        virtual void imprimeDadosPorTipoVeiculo() const override;
+
     public:
         Carro(const std::string& modelo, const unsigned int ano, const std::string& placa, 
             const std::string& chassi, const unsigned long renavam, const float valorVenda

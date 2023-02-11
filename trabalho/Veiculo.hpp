@@ -30,8 +30,15 @@ class Veiculo{
             const std::string& chassi, const unsigned long renavam, const float valorVenda
         );
 
+        /**
+         * Imprime os dados especificos do determinado tipo do veiculo
+         * @returns void
+         */
+        virtual void imprimeDadosPorTipoVeiculo() const = 0;
+
     public:
-        virtual ~Veiculo() = default;
+        
+        virtual ~Veiculo() = default; 
         
         /**
          * Calcula o IPVA do Veiculo. Veiculos fabricados a mais de vinte anos sao isentos
@@ -39,6 +46,12 @@ class Veiculo{
          * @returns float O valor do IPVA em reais. Se o Veiculo eh isento, retorna 0
          */
         float calcularIPVA() const;
+        
+        /**
+         * Imprime os dados do veiculo
+         * @returns void
+         */
+        void imprimeDadosVeiculo() const;
         
 };
 }
