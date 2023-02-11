@@ -32,24 +32,32 @@ class Veiculo{
 
         /**
          * Imprime os dados especificos do determinado tipo do veiculo
-         * @returns void
+         * 
+         * @return void
          */
         virtual void imprimeDadosPorTipoVeiculo() const = 0;
+        
+        /**
+         * Calcula o valor da taxa ser cobrada pelo uso do veiculo, em centavos 
+         * 
+         * @return unsigned long O valor da taxa do veiculo em centavos
+         */
+        virtual unsigned long calcularTaxaVeiculo() const = 0;
 
     public:
         
         virtual ~Veiculo() = default; 
         
         /**
-         * Calcula o IPVA do Veiculo. Veiculos fabricados a mais de vinte anos sao isentos
+         * Calcula o IPVA do Veiculo em centavos. Veiculos fabricados a mais de vinte anos sao isentos
          *
-         * @returns float O valor do IPVA em reais. Se o Veiculo eh isento, retorna 0
+         * @return float O valor do IPVA em centavos. Se o Veiculo eh isento, retorna 0
          */
-        float calcularIPVA() const;
-        
+        unsigned long calcularIPVA() const;
         /**
          * Imprime os dados do veiculo
-         * @returns void
+         * 
+         * @return void
          */
         void imprimeDadosVeiculo() const;
         
