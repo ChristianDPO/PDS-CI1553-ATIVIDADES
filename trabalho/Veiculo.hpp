@@ -2,6 +2,7 @@
 #define VEICULO_HPP
 
 #include <string>
+#include <regex>
 
 namespace frota {
 /**

@@ -1,4 +1,5 @@
 #include "Veiculo.hpp"
+#include "RegexExpressoes.hpp"
 
 #include <iostream>
 #include <iomanip>
@@ -6,7 +7,6 @@
 #include <regex>
 
 using namespace frota;
-
 
 Veiculo::Veiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
         const std::string& chassi, const unsigned long renavam, const float valorVenda)
@@ -99,7 +99,7 @@ std::string Veiculo::getPlaca() const { return this->placa; }
  */
 void Veiculo::setPlaca(const std::string& placa){
     
-    if(!std::regex_match(placa, std::regex("^[A-Z]{3}[0-9]{1}[[A-Z]{1}[0-9]{2}$"))){
+    if(!std::regex_match(placa, frota::RegexExpressoes::regexPlaca)){
         throw std::invalid_argument{"Placa invalida (Digite uma placa na forma 'AAA0A00', com letras maiúsculas)"};
     }
     this->placa = placa;
