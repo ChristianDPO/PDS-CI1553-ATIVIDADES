@@ -9,7 +9,7 @@ Caminhao::Caminhao(const std::string& modelo, const unsigned int ano, const std:
         const frota::EnumTipoCaminhao tipoCaminhao, const unsigned int capacidade)
     :Veiculo{modelo, ano, placa, chassi, renavam, valorVenda}{
     this->tipoCaminhao = tipoCaminhao;
-    this->capacidade = capacidade;
+    this->setCapacidade(capacidade);
 }
 
 /**
@@ -45,4 +45,23 @@ unsigned long Caminhao::calcularTaxaVeiculo() const {
     
     return frota::Caminhao::porcentagemCaminhaoCarreta*this->calcularIPVA();
 
+}
+
+/**
+ * Retorna a capacidade do Caminhao (em kg)
+ * @return unsigned int Capacidade (em kg)
+ */
+unsigned int Caminhao::getCapacidade() const { return this->capacidade; }
+
+/**
+ * Atualiza a capacidade do Caminhao (entre 1 e 20000 kg)
+ * @param capacidade unsigned int Capacidade da Van (entre 1 e 20000 kg)
+ * @throws @throws std::invalid_argument Se a capacidade nao esta entre 1 e 20000 kg
+ */
+void Caminhao::setCapacidade(const unsigned int capacidade){
+    if(capacidade < 1 || capacidade > 2000)
+        throw std::invalid_argument{
+            "Capacidade invalida (Caminhões devem ter uma capacidade entr 1 kg e 20000 kg)"
+        };
+    this->capacidade = capacidade;
 }
