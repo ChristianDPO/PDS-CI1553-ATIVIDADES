@@ -16,7 +16,7 @@ Veiculo::Veiculo(const std::string& modelo, const unsigned int ano, const std::s
     this->setPlaca(placa);
     this->setChassi(chassi);
     this->setRenavam(renavam);
-    this->valorVenda = valorVenda*100;
+    this->setValorVenda(valorVenda);
 }
 
 /**
@@ -138,6 +138,29 @@ unsigned long Veiculo::getRenavamNumerico() const { return this->renavam; }
 
 
 /**
+ * Retorna o valor de venda do veiculo (em reais)
+ * 
+ * @return float Valor de venda do veiculo (em reais)
+ */
+float Veiculo::getValorVenda() const {
+    return (float) this->valorVenda/100;
+}
+
+/**
+ * Atualiza o renavam do veiculo (entre 1000 e 800000 reais)
+ * @param valorVenda float Valor de venda do veiculo
+ * @throws std::invalid_argument Se o valor de venda nao esta entre 1000 e 800000 reais
+ */
+void Veiculo::setValorVenda(float valorVenda) {
+    if(valorVenda < 1000.0 || valorVenda > 800000.0)
+        throw std::invalid_argument{
+            "Valor de Venda invalido (Os veiculos devem ter um valor de venda entre 1000 e 800000 reais)"
+        };
+    this->valorVenda = (unsigned long) valorVenda*100;
+}  
+
+
+/**
  * Imprime os dados do veiculo
  * 
  * @return void
@@ -153,7 +176,7 @@ void Veiculo::imprimeDadosVeiculo() const {
     std::cout << "- Número do Chassi: " << this->chassi << std::endl;
     std::cout << "- Número do Renavam: " << this->getRenavam() << std::endl;
     std::cout << "- Valor de Venda: R$";
-    std::cout << std::fixed << std::setprecision(2) << (float) this->valorVenda/100 << std::endl;
+    std::cout << std::fixed << std::setprecision(2) << this->getValorVenda() << std::endl;
     std::cout << "- Valor do IPVA: R$";
     std::cout << std::fixed << std::setprecision(2) << (float) this->calcularIPVA()/100 << std::endl;
     std::cout << "- Valor da Taxa de uso: R$";

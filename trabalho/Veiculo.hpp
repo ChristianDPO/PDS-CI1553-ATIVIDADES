@@ -128,6 +128,19 @@ class Veiculo{
          * @return unsigned long Renavam do veiculo
          */
         unsigned long getRenavamNumerico() const;
+        /**
+         * Retorna o valor de venda do veiculo (em reais)
+         * 
+         * @return float Valor de venda do veiculo (em reais)
+         */
+        float getValorVenda() const;
+        /**
+         * Atualiza o renavam do veiculo (entre 1000 e 800000 reais)
+         * @param valorVenda float Valor de venda do veiculo
+         * @throws std::invalid_argument Se o valor de venda nao esta entre 1000 e 800000 reais
+         */
+        void setValorVenda(float valorVenda);   
+
 };
 }
 
