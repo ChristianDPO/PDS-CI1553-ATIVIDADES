@@ -15,17 +15,20 @@ namespace frota{
  * @param idade unsigned short int Idade do Motorista (entre 18 e 120)
  * @param cnh string Numero da Carteira Nacional de Habilitacao do Motorista (9 digitos)
  * @param cargaHoraria unsigned short int Carga horaria mensal do Motorista (entre 1 e 250 horas)
- * @param valorHora float Valor por hora trabalhada do Motorista em reais (entre 1 e 100 reais). 
+ * @param valorHora float Valor por hora trabalhada do Motorista em reais (entre 1 e 1000 reais por hora). 
  * 
  * @throws std::invalid_argument Se algum dos parametros passados nao corresponde a validacao
  */
 class Motorista: public Pessoa{
 
     protected:
+        
+        //desconto de 50 reais por hora trabalhada nas taxas dos veiculos
+        constexpr static unsigned short int valorDescontoHora{50};
 
         unsigned long cnh; //armazenado como um numero
         unsigned short int cargaHoraria;
-        unsigned int valorHora; //armazenado em centavos
+        unsigned long valorHora; //armazenado em centavos
 
         /**
          * Imprime os dados especificos do determinado tipo de Pessoa
@@ -40,6 +43,15 @@ class Motorista: public Pessoa{
         );
         virtual ~Motorista() = default;
 
+        /**
+         * Calcula o valor de desconto da taxa por veiculo por hora trabalhada.
+         * Esse desconto sera subtraido de cada taxa de cada veiculo do motorista
+         * Se o desconto for maior que a taxa do veiculo, a taxa do veiculo eh anulada
+         * 
+         * @return unsigned long Valor do desconto em centavos 
+         */
+        unsigned long calculaDescontoPorHora() const;
+        
         /**
          * Retorna a CNH do Motorista
          * @return string CNH do Motorista
@@ -80,7 +92,7 @@ class Motorista: public Pessoa{
         float getValorHora() const;
         /**
          * Atualiza o Valor por hora do Motorista
-         * @param valorHora float Valor por hora do Motorista (entre 1 e 100)
+         * @param valorHora float Valor por hora do Motorista (entre 1 e 1000)
          * @throws std::invalid_argument Se o Valor por hora eh invalido
          */
         void setValorHora(const float valorHora);

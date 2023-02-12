@@ -29,6 +29,19 @@ void Motorista::imprimeDadosPorTipoPessoa() const {
     std::cout << "* Carga Horaria: " << this->cargaHoraria << " horas" << std::endl;
     std::cout << "* Valor por Hora: R$";
     std::cout << std::fixed << std::setprecision(2) << this->getValorHora() << std::endl;
+    std::cout << "* Desconto por veiculo: R$";
+    std::cout << std::fixed << std::setprecision(2) << (float) this->calculaDescontoPorHora()/100 << std::endl;
+}
+
+/**
+ * Calcula o valor de desconto da taxa por veiculo por hora trabalhada.
+ * Esse desconto sera subtraido de cada taxa de cada veiculo do motorista
+ * Se o desconto for maior que a taxa do veiculo, a taxa do veiculo eh anulada
+ * 
+ * @return unsigned long Valor do desconto em centavos 
+ */
+unsigned long Motorista::calculaDescontoPorHora() const {
+    return Motorista::valorDescontoHora*this->cargaHoraria*100;
 }
 
 /**
@@ -105,13 +118,13 @@ float Motorista::getValorHora() const {
 
 /**
  * Atualiza o Valor por hora do Motorista
- * @param valorHora float Valor por hora do Motorista (entre 1 e 100)
+ * @param valorHora float Valor por hora do Motorista (entre 1 e 1000)
  * @throws std::invalid_argument Se o Valor por hora eh invalido
  */
 void Motorista::setValorHora(const float valorHora){
-    if(valorHora < 1 || valorHora > 100)
+    if(valorHora < 1 || valorHora > 1000)
         throw std::invalid_argument{
             "Valor por Hora invalido (O Valor por Hora deve estar entre 1 e 100 reais por hora)"
         };
-    this->valorHora = (unsigned int) (valorHora*100);
+    this->valorHora = (unsigned long) (valorHora*100);
 }
