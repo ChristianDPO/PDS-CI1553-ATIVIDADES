@@ -16,19 +16,19 @@ int main(){
 	std::list<frota::Veiculo *> lista_veiculos;
 	std::list<frota::Veiculo *>* pont_lista{&lista_veiculos};
 
-	frota::Carro* car1{new frota::Carro{"Pegout", 2018, "AAA0A00", "9BRBLWHEXG0107721", 
+	frota::Carro* car1{new frota::Carro{"Pegout", 2018, "AAA0A00", "0AAAAAAAAA0000000", 
 		11111111111, 22000.50, frota::EnumTipoCarro::ENTREGA
 	}};
 	
-	frota::Caminhao* cam1{new frota::Caminhao{"Mercedez", 2023, "BBB1B11", "5ABCDEFGHJ1234567", 
+	frota::Caminhao* cam1{new frota::Caminhao{"Mercedez", 2023, "BBB1B11", "1BBBBBBBBB1111111", 
 		22222222222, 700000.50, frota::EnumTipoCaminhao::CARRETA, 450
 	}};
 
-	frota::Moto* mot1{new frota::Moto{"Yamaha", 2000, "CCC3C33", "7ABCDEFGHJ1234567", 
+	frota::Moto* mot1{new frota::Moto{"Yamaha", 2000, "CCC3C33", "3CCCCCCCCC3333333", 
 		33333333333, 8000.50, frota::EnumTipoMoto::PADRAO
 	}};
 
-	frota::Van* van1{new frota::Van{"Volkswagen", 2018, "DDD4D44", "4ABCDEFGHJ1234567", 
+	frota::Van* van1{new frota::Van{"Volkswagen", 2018, "DDD4D44", "4DDDDDDDDD4444444", 
 		44444444444, 22000.50, frota::EnumTipoCarro::ENTREGA, 100
 	}};
 

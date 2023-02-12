@@ -21,7 +21,7 @@ class Veiculo{
     protected:
         //taxa estadual padrao (PR) para calculo do IPVA
         constexpr static float aliquotaEstadual{0.035};
-        
+
         std::string placa;
         std::string chassi;
         unsigned long renavam;
@@ -98,6 +98,18 @@ class Veiculo{
          * @throws std::invalid_argument Se a placa nao eh uma string do tipo 'AAA0A00'
          */
         void setPlaca(const std::string& placa);
+        /**
+         * Retorna o chassi do veiculo
+         * 
+         * @return string chassi do veiculo
+         */
+        std::string getChassi() const;
+        /**
+         * Atualiza o chassi do veiculo
+         * @param chassi string chassi do veiculo (string alfanumerica do tipo '0AAAAAAAAA0000000')
+         * @throws std::invalid_argument Se o chassi nao eh uma string do tipo '0AAAAAAAAA0000000'
+         */
+        void setChassi(const std::string& chassi);
 
 };
 }

@@ -10,6 +10,7 @@ namespace frota{
 class RegexExpressoes{
     public:
         const static std::regex regexPlaca;
+        const static std::regex regexChassi;
 
         RegexExpressoes() = delete;
         virtual ~RegexExpressoes() = default;

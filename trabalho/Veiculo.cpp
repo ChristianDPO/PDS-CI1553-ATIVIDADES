@@ -14,7 +14,7 @@ Veiculo::Veiculo(const std::string& modelo, const unsigned int ano, const std::s
     {
     this->setAno(ano);
     this->setPlaca(placa);
-    this->chassi = chassi;
+    this->setChassi(chassi);
     this->renavam = renavam;
     this->valorVenda = valorVenda*100;
 }
@@ -100,7 +100,26 @@ std::string Veiculo::getPlaca() const { return this->placa; }
 void Veiculo::setPlaca(const std::string& placa){
     
     if(!std::regex_match(placa, frota::RegexExpressoes::regexPlaca)){
-        throw std::invalid_argument{"Placa invalida (Digite uma placa na forma 'AAA0A00', com letras maiúsculas)"};
+        throw std::invalid_argument{"Placa invalida (A placa deve estar na forma 'AAA0A00', com letras maiúsculas)"};
     }
     this->placa = placa;
+}
+
+/**
+ * Retorna o chassi do veiculo
+ * 
+ * @return string chassi do veiculo
+ */
+std::string Veiculo::getChassi() const { return this->chassi; }
+
+/**
+ * Atualiza o chassi do veiculo
+ * @param chassi string chassi do veiculo (string alfanumerica do tipo '0AAAAAAAAA0000000')
+ * @throws std::invalid_argument Se o chassi nao eh uma string do tipo '0AAAAAAAAA0000000'
+ */
+void Veiculo::setChassi(const std::string& chassi){
+    if(!std::regex_match(chassi, frota::RegexExpressoes::regexChassi)){
+        throw std::invalid_argument{"Chassi invalido (O chassi deve estar na forma '0AAAAAAAAA0000000', com letras maiúsculas)"};
+    }
+    this->chassi = chassi;
 }
