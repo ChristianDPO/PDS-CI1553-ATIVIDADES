@@ -3,8 +3,8 @@ nomePrograma=frota
 
 all: $(nomePrograma)
 
-$(nomePrograma): main.o Veiculo.o Carro.o Caminhao.o Moto.o Van.o Pessoa.o Motorista.o ModelSistemaFrota.o VeiculoJaCadastradoException.o RegexExpressoes.o 
-	g++ -o $(nomePrograma) main.o Veiculo.o Carro.o Caminhao.o Moto.o Van.o Pessoa.o Motorista.o ModelSistemaFrota.o VeiculoJaCadastradoException.o RegexExpressoes.o $(parametrosCompilacao)
+$(nomePrograma): main.o Veiculo.o Carro.o Caminhao.o Moto.o Van.o Pessoa.o Motorista.o ModelSistemaFrota.o VeiculoJaCadastradoException.o MotoristaJaCadastradoException.o RegexExpressoes.o 
+	g++ -o $(nomePrograma) main.o Veiculo.o Carro.o Caminhao.o Moto.o Van.o Pessoa.o Motorista.o ModelSistemaFrota.o VeiculoJaCadastradoException.o MotoristaJaCadastradoException.o RegexExpressoes.o $(parametrosCompilacao)
 
 main.o: main.cpp
 	g++ -c main.cpp $(parametrosCompilacao)
@@ -35,6 +35,9 @@ ModelSistemaFrota.o: ModelSistemaFrota.cpp ModelSistemaFrota.hpp
 
 VeiculoJaCadastradoException.o: VeiculoJaCadastradoException.cpp VeiculoJaCadastradoException.hpp
 	g++ -c VeiculoJaCadastradoException.cpp $(parametrosCompilacao)
+
+MotoristaJaCadastradoException.o: MotoristaJaCadastradoException.cpp MotoristaJaCadastradoException.hpp
+	g++ -c MotoristaJaCadastradoException.cpp $(parametrosCompilacao)
 
 RegexExpressoes.o: RegexExpressoes.cpp RegexExpressoes.hpp
 	g++ -c RegexExpressoes.cpp $(parametrosCompilacao)
