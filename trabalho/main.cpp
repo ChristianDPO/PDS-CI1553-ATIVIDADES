@@ -11,18 +11,19 @@
 #include "EnumTipoMoto.hpp"
 #include "Van.hpp"
 #include "Pessoa.hpp"
+#include "Motorista.hpp"
 
 int main(){
 
 	std::list<frota::Veiculo *> lista_veiculos;
 	std::list<frota::Veiculo *>* pont_lista{&lista_veiculos};
 
-	frota::Pessoa* p1{new frota::Pessoa{"João", "00011111111", 23}};
+	frota::Motorista* m1{new frota::Motorista{"João", "00011111111", 23, "001234567", 60, 25.50}};
 
-	p1->imprimeDadosPessoa();
+	m1->imprimeDadosPessoa();
 
 	frota::Carro* car1{new frota::Carro{"Pegout", 2018, "AAA0A00", "0AAAAAAAAA0000000", 
-		"11111111111", 22000.50, frota::EnumTipoCarro::ENTREGA
+		"11111111111", 22437.50, frota::EnumTipoCarro::ENTREGA
 	}};
 	
 	frota::Caminhao* cam1{new frota::Caminhao{"Mercedez", 2023, "BBB1B11", "1BBBBBBBBB1111111", 

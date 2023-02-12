@@ -3,8 +3,8 @@ nomePrograma=frota
 
 all: $(nomePrograma)
 
-$(nomePrograma): main.o Veiculo.o Carro.o Caminhao.o Moto.o Van.o Pessoa.o RegexExpressoes.o 
-	g++ -o $(nomePrograma) main.o Veiculo.o Carro.o Caminhao.o Moto.o Van.o RegexExpressoes.o Pessoa.o $(parametrosCompilacao)
+$(nomePrograma): main.o Veiculo.o Carro.o Caminhao.o Moto.o Van.o Pessoa.o Motorista.o RegexExpressoes.o 
+	g++ -o $(nomePrograma) main.o Veiculo.o Carro.o Caminhao.o Moto.o Van.o RegexExpressoes.o Pessoa.o Motorista.o $(parametrosCompilacao)
 
 main.o: main.cpp
 	g++ -c main.cpp $(parametrosCompilacao)
@@ -26,6 +26,10 @@ Van.o: Van.cpp Van.hpp
 
 Pessoa.o: Pessoa.cpp Pessoa.hpp
 	g++ -c Pessoa.cpp $(parametrosCompilacao)
+
+Motorista.o: Motorista.cpp Motorista.hpp
+	g++ -c Motorista.cpp $(parametrosCompilacao)
+
 
 RegexExpressoes.o: RegexExpressoes.cpp RegexExpressoes.hpp
 	g++ -c RegexExpressoes.cpp $(parametrosCompilacao)

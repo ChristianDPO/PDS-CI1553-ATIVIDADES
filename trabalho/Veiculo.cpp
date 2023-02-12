@@ -156,7 +156,7 @@ void Veiculo::setValorVenda(float valorVenda) {
         throw std::invalid_argument{
             "Valor de Venda invalido (Os veiculos devem ter um valor de venda entre 1000 e 800000 reais)"
         };
-    this->valorVenda = (unsigned long) valorVenda*100;
+    this->valorVenda = (unsigned long) (valorVenda*100);
 }  
 
 
