@@ -37,7 +37,7 @@ unsigned short int Pessoa::getIdade() const {
     return (unsigned short int)idade;
 }
 
-void Pessoa::setIdade(const unsigned short int novaIdade) {
+void Pessoa::setIdade(const unsigned short int idade) {
     if (novaIdade > 120) throw std::invalid_argument{"Idade Invalida."};
     idade = (unsigned char)novaIdade;
 }

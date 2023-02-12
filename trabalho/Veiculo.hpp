@@ -58,12 +58,6 @@ class Veiculo{
          */
         unsigned long calcularIPVA() const;
         /**
-         * Imprime os dados do veiculo
-         * 
-         * @return void
-         */
-        void imprimeDadosVeiculo() const;
-        /**
          * Retorna o modelo do veiculo
          * 
          * @return string Modelo do veiculo
@@ -140,6 +134,12 @@ class Veiculo{
          * @throws std::invalid_argument Se o valor de venda nao esta entre 1000 e 800000 reais
          */
         void setValorVenda(float valorVenda);   
+        /**
+         * Imprime os dados do veiculo
+         * 
+         * @return void
+         */
+        void imprimeDadosVeiculo() const;
 
 };
 }

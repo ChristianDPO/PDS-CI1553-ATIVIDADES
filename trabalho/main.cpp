@@ -10,11 +10,16 @@
 #include "Moto.hpp"
 #include "EnumTipoMoto.hpp"
 #include "Van.hpp"
+#include "Pessoa.hpp"
 
 int main(){
 
 	std::list<frota::Veiculo *> lista_veiculos;
 	std::list<frota::Veiculo *>* pont_lista{&lista_veiculos};
+
+	frota::Pessoa* p1{new frota::Pessoa{"João", "00011111111", 23}};
+
+	p1->imprimeDadosPessoa();
 
 	frota::Carro* car1{new frota::Carro{"Pegout", 2018, "AAA0A00", "0AAAAAAAAA0000000", 
 		"11111111111", 22000.50, frota::EnumTipoCarro::ENTREGA
