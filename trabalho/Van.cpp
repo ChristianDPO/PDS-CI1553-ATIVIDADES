@@ -5,7 +5,7 @@
 using namespace frota;
 
 Van::Van(const std::string& modelo, const unsigned int ano, const std::string& placa, 
-        const std::string& chassi, const std::string renavam, const float valorVenda,
+        const std::string& chassi, const std::string& renavam, const float valorVenda,
         const frota::EnumTipoCarro tipoCarro, const unsigned int capacidade)
     :Carro{modelo, ano, placa, chassi, renavam, valorVenda, tipoCarro}{
     this->setCapacidade(capacidade);

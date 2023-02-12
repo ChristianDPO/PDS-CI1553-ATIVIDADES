@@ -32,6 +32,8 @@ class Pessoa{
         Pessoa(const std::string& nome, const std::string& cpf, const unsigned short int idade);
         virtual ~Pessoa() = default;
 
+        bool operator==(const Pessoa& outro) const;
+
         /**
          * Retorna o nome da Pessoa
          * 

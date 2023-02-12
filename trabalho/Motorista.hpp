@@ -43,6 +43,8 @@ class Motorista: public Pessoa{
         );
         virtual ~Motorista() = default;
 
+        bool operator==(const Motorista& outro) const;
+
         /**
          * Calcula o valor de desconto da taxa por veiculo por hora trabalhada.
          * Esse desconto sera subtraido de cada taxa de cada veiculo do motorista

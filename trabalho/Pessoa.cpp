@@ -13,6 +13,10 @@ Pessoa::Pessoa(const std::string& nome, const std::string& cpf, const unsigned s
     this->setIdade(idade);
 }
 
+bool Pessoa::operator==(const Pessoa& outro) const {
+    return this->cpf == outro.cpf;
+}
+
 /**
  * Retorna o nome da Pessoa
  * 

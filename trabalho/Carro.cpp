@@ -5,7 +5,7 @@
 using namespace frota;
 
 Carro::Carro(const std::string& modelo, const unsigned int ano, const std::string& placa, 
-        const std::string& chassi, const std::string renavam, const float valorVenda,
+        const std::string& chassi, const std::string& renavam, const float valorVenda,
         const frota::EnumTipoCarro tipoCarro)
     :Veiculo{modelo, ano, placa, chassi, renavam, valorVenda}{
     this->tipoCarro = tipoCarro;

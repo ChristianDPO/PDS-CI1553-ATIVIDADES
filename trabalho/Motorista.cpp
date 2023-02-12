@@ -17,6 +17,10 @@ Motorista::Motorista(const std::string& nome, const std::string& cpf, const unsi
     this->setValorHora(valorHora);
 }
 
+bool Motorista::operator==(const Motorista& outro) const {
+    return (this->cpf == outro.cpf || this->cnh == outro.cnh);
+}
+
 /**
  * Imprime os dados especificos do determinado tipo de Pessoa
  * 

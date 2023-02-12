@@ -9,7 +9,7 @@
 using namespace frota;
 
 Veiculo::Veiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
-        const std::string& chassi, const std::string renavam, const float valorVenda)
+        const std::string& chassi, const std::string& renavam, const float valorVenda)
     :modelo{modelo}
     {
     this->setAno(ano);
@@ -17,6 +17,10 @@ Veiculo::Veiculo(const std::string& modelo, const unsigned int ano, const std::s
     this->setChassi(chassi);
     this->setRenavam(renavam);
     this->setValorVenda(valorVenda);
+}
+
+bool Veiculo::operator==(const Veiculo& outro) const {
+    return (this->renavam == outro.renavam || this->placa == outro.placa);
 }
 
 /**
