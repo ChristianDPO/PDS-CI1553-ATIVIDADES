@@ -84,7 +84,7 @@ const bool ModelSistemaFrota::verificarMotoristaDuplicado(const Motorista& motor
  * @throws std::invalid_argument Se algum dos parametros passados nao corresponde a validacao
  * @throws frota::MotoristaJaCadastradoException Se ja existe um motorista com o cpf/cnh cadastrado 
  */
-Motorista *ModelSistemaFrota::cadastrarMotorista(const std::string& nome, const std::string& cpf, const unsigned short int idade,
+Motorista* const ModelSistemaFrota::cadastrarMotorista(const std::string& nome, const std::string& cpf, const unsigned short int idade,
     const std::string& cnh, unsigned short int cargaHoraria, float valorHora
 ){
     //aqui ja valida os campos
@@ -114,28 +114,7 @@ Motorista *ModelSistemaFrota::cadastrarMotorista(const std::string& nome, const 
  * @throws std::invalid_argument Se algum dos parametros passados nao corresponde a validacao
  * @throws frota::VeiculoJaCadastradoException Se ja existe um veiculo com a placa/renavam cadastrado 
  */
-Veiculo *cadastrarVeiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
-    const std::string& chassi, const std::string& renavam, const float valorVenda,
-    const EnumTipoCarro tipoCarro
-);
-
-/**
- * Cadastra um veiculo (Carro)
- * 
- * @param modelo string Nome/modelo do veiculo
- * @param ano unsigned int Ano de fabricacao do veiculo (1886 ate 2023)
- * @param placa string Numero da placa do veiculo (string com 7 digitos alfanumericos)
- * @param chassi string Numero do chassi do veiculo (string com 17 digitos alfanumericos)
- * @param renavam string Numero do Renavam do veiculo (string com 11 digitos numericos). Armazenado em um unsigned long
- * @param valorVenda float Valor da venda do veiculo (em reais). Armazenado em um unsigned int em centavos
- * @param tipoCarro EnumTipoCarro Tipo do Carro
- * 
- * @return *Veiculo Veiculo cadastrado
- * 
- * @throws std::invalid_argument Se algum dos parametros passados nao corresponde a validacao
- * @throws frota::VeiculoJaCadastradoException Se ja existe um veiculo com a placa/renavam cadastrado 
- */
-Veiculo *ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
+Veiculo* const ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
     const std::string& chassi, const std::string& renavam, const float valorVenda,
     const EnumTipoCarro tipoCarro
 ){
@@ -169,7 +148,7 @@ Veiculo *ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const un
  * @throws std::invalid_argument Se algum dos parametros passados nao corresponde a validacao
  * @throws frota::VeiculoJaCadastradoException Se ja existe um veiculo com a placa/renavam cadastrado 
  */
-Veiculo *ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
+Veiculo * const ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
     const std::string& chassi, const std::string& renavam, const float valorVenda,
     const EnumTipoCarro tipoCarro, const unsigned int capacidade
 ){
@@ -203,7 +182,7 @@ Veiculo *ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const un
  * @throws std::invalid_argument Se algum dos parametros passados nao corresponde a validacao
  * @throws frota::VeiculoJaCadastradoException Se ja existe um veiculo com a placa/renavam cadastrado 
  */
-Veiculo *ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
+Veiculo * const ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
     const std::string& chassi, const std::string& renavam, const float valorVenda,
     const EnumTipoMoto tipoMoto
 ){
@@ -238,7 +217,7 @@ Veiculo *ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const un
  * @throws std::invalid_argument Se algum dos parametros passados nao corresponde a validacao
  * @throws frota::VeiculoJaCadastradoException Se ja existe um veiculo com a placa/renavam cadastrado 
  */
-Veiculo *ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
+Veiculo * const ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
     const std::string& chassi, const std::string& renavam, const float valorVenda,
     const EnumTipoCaminhao tipoCaminhao, unsigned int capacidade
 ){

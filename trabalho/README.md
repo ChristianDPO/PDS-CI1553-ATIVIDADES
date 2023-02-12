@@ -21,3 +21,35 @@ As funcionalidades que pensei do sistema seriam
 3 - Visualizar Todos os Veículos (detalhes como ipva e taxa também seriam mostrados)
 4 - Visualizar Todos os Motoristas 
 5 - Vizualizar Veículos por Motorista (também mostraria a taxa total e o desconto total dessa taxa)
+
+## Ideia atual
+
+O sistema é um sistema de frota, que permite as seguintes funcionalidades:
+
+1 - Listar Veiculos
+2 - Listar Motoristas
+3 - Cadastrar Veiculo
+4 - Cadastrar Motorista
+5 - Associar um Veiculo a um Motorista
+6 - Vizualizar Veiculos por Motorista
+7 - Remover Veiculo
+8 - Remover Motorista
+
+## Regra de Negócio
+
+### Veiculo
+- Todo Veiculo tem os seguintes atributos
+
+
+### Motorista
+
+- Tem os seguintes campos:
+    - nome
+    - cpf 
+    - idade
+    - cnh
+    - valorHora
+    - cargaHoraria
+- Pode ser calculado o Salario do motorista
+- Cada motorista tem uma lista de veiculos associada a ele
+    - Dessa lista

@@ -48,12 +48,18 @@ class Motorista: public Pessoa{
         /**
          * Calcula o valor de desconto da taxa por veiculo por hora trabalhada.
          * Esse desconto sera subtraido de cada taxa de cada veiculo do motorista
-         * Se o desconto for maior que a taxa do veiculo, a taxa do veiculo eh anulada
          * 
          * @return unsigned long Valor do desconto em centavos 
          */
         unsigned long calculaDescontoPorHora() const;
         
+        /**
+         * Calcula o salario do motorista
+         * 
+         * @return unsigned long Salario em centavos 
+         */
+        unsigned long calcularSalario() const;
+
         /**
          * Retorna a CNH do Motorista
          * @return string CNH do Motorista

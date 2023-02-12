@@ -33,8 +33,11 @@ void Motorista::imprimeDadosPorTipoPessoa() const {
     std::cout << "* Carga Horaria: " << this->cargaHoraria << " horas" << std::endl;
     std::cout << "* Valor por Hora: R$";
     std::cout << std::fixed << std::setprecision(2) << this->getValorHora() << std::endl;
+    std::cout << "* Salario: R$";
+    std::cout << std::fixed << std::setprecision(2) << (float) this->calcularSalario()/100 << std::endl;
     std::cout << "* Desconto por veiculo: R$";
     std::cout << std::fixed << std::setprecision(2) << (float) this->calculaDescontoPorHora()/100 << std::endl;
+
 }
 
 /**
@@ -46,6 +49,15 @@ void Motorista::imprimeDadosPorTipoPessoa() const {
  */
 unsigned long Motorista::calculaDescontoPorHora() const {
     return Motorista::valorDescontoHora*this->cargaHoraria*100;
+}
+
+/**
+ * Calcula o salario do motorista
+ * 
+ * @return unsigned long Salario em centavos 
+ */
+unsigned long Motorista::calcularSalario() const {
+    return this->valorHora*this->cargaHoraria;
 }
 
 /**

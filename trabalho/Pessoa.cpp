@@ -126,6 +126,6 @@ void Pessoa::imprimeDadosPessoa() const {
 
     std::cout << "- Nome: " << this->nome << std::endl;
     std::cout << "- CPF: " << this->getCPF() << std::endl;
-    std::cout << "- Idade: " << this->idade << std::endl;
+    std::cout << "- Idade: " << this->idade << " anos" << std::endl;
     
 }
