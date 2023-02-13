@@ -57,23 +57,8 @@ int main(){
 		"99999999999", 800000, frota::EnumTipoCaminhao::CARRETA, 20000
 	);
 
-	modelo->cadastrarMotorista("João", "00011111111", 23, "001234567", 60, 25.50);
-	modelo->cadastrarMotorista("Maria", "00022222222", 30, "007654321", 100, 1000);
-
-	//teste motorista ja cadastrado
-	//modelo->cadastrarMotorista("João", "00011111111", 23, "001234567", 60, 25.50);
-
-	// const std::list<frota::Motorista *>* const lista_motoristas{modelo->getMotoristas()};
-	// std::list<frota::Motorista *>::const_iterator it_mot;
-	// for(it_mot = lista_motoristas->begin(); it_mot != lista_motoristas->end(); ++it_mot){
-	// 	(*it_mot)->imprimeDadosPessoa();
-	// }
-
-	// const std::list<frota::Veiculo *>* const lista_veiculos{modelo->getVeiculos()};
-	// std::list<frota::Veiculo *>::const_iterator it;
-	// for(it = lista_veiculos->begin(); it != lista_veiculos->end(); ++it){
-	// 	(*it)->imprimeDadosVeiculo();
-	// }
+	modelo->cadastrarMotorista("João", "00011111111", 23, "001111111", 60, 25.50);
+	modelo->cadastrarMotorista("Maria", "00022222222", 30, "002222222", 100, 1000);
 
 	// Execucao do sistema (controller)
 	EnumTipoOperacao op;

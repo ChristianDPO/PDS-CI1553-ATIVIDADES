@@ -22,9 +22,9 @@ EnumTipoOperacao ViewSistemaFrota::menuPrincipal() const {
     unsigned short int op;
 
     std::cout << "====== Bem Vindo ao Sistema de Cadastro de Frotas  ======\n";
-    std::cout << "====== Digite o numero de uma das operações abaixo ======";
-    std::cout << "0 - Vizualizar Veiculos\n";
-    std::cout << "1 - Vizualizar Motoristas\n";
+    std::cout << "====== Digite o numero de uma das operações abaixo ======\n";
+    std::cout << "0 - Visualizar Veiculos\n";
+    std::cout << "1 - Visualizar Motoristas\n";
     std::cout << "2 - Cadastrar Veiculos\n";
     std::cout << "3 - Cadastrar Motoristas\n";
     std::cout << "7 - Sair\n";
@@ -32,13 +32,41 @@ EnumTipoOperacao ViewSistemaFrota::menuPrincipal() const {
     std::cout << "====== Operacao: ";
     std::cin >> op;
 
-    if(op < 1 || op > 7)
+    if(op < 0 || op > 7)
         return EnumTipoOperacao::INVALIDA;
     
     system("clear");
     
     return (EnumTipoOperacao) op;
 
+}
+
+
+/**
+ * Imprime na tela os veiculos atuiais do sistema
+ */
+void ViewSistemaFrota::visualizarVeiculos() const {
+	
+    const std::list<frota::Veiculo *>* const lista_veiculos{this->modelo->getVeiculos()};
+	std::list<frota::Veiculo *>::const_iterator it;
+	for(it = lista_veiculos->begin(); it != lista_veiculos->end(); ++it){
+		std::cout << std::endl;
+        (*it)->imprimeDadosVeiculo();
+	}
+    std::cout << std::endl;
+}
+/**
+ * Imprime na tela os motoristas atuiais do sistema
+ */
+void ViewSistemaFrota::visualizarMotoristas() const{
+
+	const std::list<frota::Motorista *>* const lista_motoristas{this->modelo->getMotoristas()};
+	std::list<frota::Motorista *>::const_iterator it_mot;
+	for(it_mot = lista_motoristas->begin(); it_mot != lista_motoristas->end(); ++it_mot){
+		std::cout << std::endl;
+        (*it_mot)->imprimeDadosPessoa();
+	}
+    std::cout << std::endl;
 }
 
 /**
@@ -48,10 +76,12 @@ EnumTipoOperacao ViewSistemaFrota::menuPrincipal() const {
 void ViewSistemaFrota::realizaOperacao(EnumTipoOperacao op){
 
     if(op == EnumTipoOperacao::VISUALIZAR_VEICULOS){
-        std::cout << "====== Vizualizar Veiculos ======\n\n";
+        std::cout << "====== Visualizar Veiculos ======\n\n";
+        return this->visualizarVeiculos();
     }
     else if (op == EnumTipoOperacao::VISUALIZAR_MOTORISTAS){
-        std::cout << "====== Vizualizar Motoristas ======\n\n";
+        std::cout << "====== Visualizar Motoristas ======\n\n";
+        return this->visualizarMotoristas();
     } 
     else if (op == EnumTipoOperacao::CADASTRAR_VEICULO){
         std::cout << "====== Cadastrar Veiculo ======\n\n";

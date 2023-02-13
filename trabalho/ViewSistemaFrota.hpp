@@ -22,11 +22,18 @@ class ViewSistemaFrota{
          */
         EnumTipoOperacao menuPrincipal() const;
         /**
+         * Imprime na tela os veiculos atuiais do sistema
+         */
+        void visualizarVeiculos() const;
+        /**
+         * Imprime na tela os motoristas atuiais do sistema
+         */
+        void visualizarMotoristas() const;
+        /**
          * Realiza a operacao especificada, reportando em caso de erro ou sucesso
          * @return void
          */
         void realizaOperacao(EnumTipoOperacao op);
-
 
 };
 }
