@@ -9,7 +9,6 @@
 #include "EnumTipoMoto.hpp"
 #include "EnumTipoCaminhao.hpp"
 
-
 #include <list>
 
 namespace frota{
@@ -22,6 +21,19 @@ class ModelSistemaFrota{
         std::list<Motorista*>* const lista_motoristas;
         std::list<Veiculo*>* const lista_veiculos;
     
+        /**
+         * Busca motorista por CPF
+         * @param cpf string CPF do motorista
+         * @return Motorista* Motorista com o CPF especificado ou nullptr
+         */
+        Motorista *buscarMotorista(const std::string&cpf);
+        /**
+         * Busca veiculo pela placa
+         * @param cpf string Placa do veiculo
+         * @return Veiculo* Veiculo com a placa especificada ou nullptr
+         */
+        Veiculo *buscarVeiculo(const std::string&placa);
+
     public:
         ModelSistemaFrota();
         virtual ~ModelSistemaFrota();
@@ -155,10 +167,31 @@ class ModelSistemaFrota{
     /**
      * Busca motorista por CPF
      * @param cpf string CPF do motorista
-     * @return Motorista* Motorista com o CPF especificado ou nullptr
+     * @return Motorista* Motorista com o CPF especificado (somente leitura) ou nullptr
      */
-    const Motorista *buscarMotorista(const std::string&cpf) const;
+    const Motorista *getMotorista(const std::string&cpf) const;
 
+    /**
+     * Associa um Veiculo a um Motorista
+     * @param placa string Placa do Veiculo
+     * @param cpf string CPF do Motorista
+     * @return void
+     * 
+     * @throw frota::VeiculoNaoEncontradoException Se a placa especificada nao corresponde a um veiculo cadastrado
+     * @throw frota::MotoristaNaoEncontradoException Se o cpf especificado nao corresponde a um motorista cadastrado
+     * @throw frota::VeiculoJaCadastradoException Se o veiculo ja esta associado ao motorista
+     */
+    void associarVeiculoMotorista(const std::string& placa, const std::string &cpf);
+    /**
+     * Desassocia um Veiculo a um Motorista
+     * @param placa string Placa do Veiculo
+     * @param cpf string CPF do Motorista
+     * @return void
+     * 
+     * @throw frota::VeiculoNaoEncontradoException Se a placa especificada nao corresponde a um veiculo cadastrado
+     * @throw frota::MotoristaNaoEncontradoException Se o cpf especificado nao corresponde a um motorista cadastrado
+     */
+    void desassociarVeiculoMotorista(const std::string& placa, const std::string &cpf);
 
 };
 }

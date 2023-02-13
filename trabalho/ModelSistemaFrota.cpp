@@ -7,6 +7,8 @@
 
 #include "VeiculoJaCadastradoException.hpp"
 #include "MotoristaJaCadastradoException.hpp"
+#include "VeiculoNaoEncontradoException.hpp"
+#include "MotoristaNaoEncontradoException.hpp"
 
 #include <iostream>
 
@@ -33,6 +35,40 @@ ModelSistemaFrota::~ModelSistemaFrota(){
 		delete *it_vei;
         it_vei = this->lista_veiculos->erase(it_vei);
 	}
+
+}
+
+/**
+ * Busca motorista por CPF
+ * @param cpf string CPF do motorista
+ * @return Motorista* Motorista com o CPF especificado ou nullptr
+ */
+Motorista *ModelSistemaFrota::buscarMotorista(const std::string&cpf){
+
+    std::list<frota::Motorista *>::iterator it;
+
+    unsigned long cpfNumerico{static_cast<unsigned long>(std::stol(cpf))};
+	for(it = this->lista_motoristas->begin(); it != this->lista_motoristas->end(); ++it)
+		if ( (*it)->getCPFNumerico() == cpfNumerico){
+            return *it;
+        }
+    return nullptr;
+
+}
+
+/**
+ * Busca veiculo pela placa
+ * @param cpf string Placa do veiculo
+ * @return Veiculo* Veiculo com a placa especificada ou nullptr
+ */
+Veiculo *ModelSistemaFrota::buscarVeiculo(const std::string&placa){
+
+    std::list<frota::Veiculo *>::iterator it;
+	for(it = this->lista_veiculos->begin(); it != this->lista_veiculos->end(); ++it)
+		if ( (*it)->getPlaca() == placa){
+            return *it;
+        }
+    return nullptr;
 
 }
 
@@ -246,9 +282,9 @@ void ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsign
 /**
  * Busca motorista por CPF
  * @param cpf string CPF do motorista
- * @return Motorista* Motorista com o CPF especificado ou nullptr
+ * @return Motorista* Motorista com o CPF especificado (somente leitura) ou nullptr
  */
-const Motorista* ModelSistemaFrota::buscarMotorista(const std::string&cpf) const{
+const Motorista* ModelSistemaFrota::getMotorista(const std::string&cpf) const{
 
     std::list<frota::Motorista *>::const_iterator it;
 
@@ -259,4 +295,46 @@ const Motorista* ModelSistemaFrota::buscarMotorista(const std::string&cpf) const
         }
     return nullptr;
 
+}
+
+/**
+ * Associa um Veiculo a um Motorista
+ * @param placa string Placa do Veiculo
+ * @param cpf string CPF do Motorista
+ * @return void
+ * 
+ * @throw frota::VeiculoNaoEncontradoException Se a placa especificada nao corresponde a um veiculo cadastrado
+ * @throw frota::MotoristaNaoEncontradoException Se o cpf especificado nao corresponde a um motorista cadastrado
+ * @throw frota::VeiculoJaCadastradoException Se o veiculo ja esta associado ao motorista
+ */
+void ModelSistemaFrota::associarVeiculoMotorista(const std::string& placa, const std::string &cpf){
+
+    Veiculo *veiculo{this->buscarVeiculo(placa)};
+    Motorista *motorista{this->buscarMotorista(cpf)};
+
+    if(veiculo == nullptr)
+        throw frota::VeiculoNaoEncontradoException{placa};
+    if(motorista == nullptr)
+        throw frota::MotoristaNaoEncontradoException{cpf};
+
+    motorista->adicionaVeiculoMotorista(veiculo);
+}
+/**
+ * Desassocia um Veiculo a um Motorista
+ * @param placa string Placa do Veiculo
+ * @param cpf string CPF do Motorista
+ * @return void
+ * 
+ * @throw frota::VeiculoNaoEncontradoException Se a placa especificada nao corresponde a um veiculo cadastrado
+ * @throw frota::MotoristaNaoEncontradoException Se o cpf especificado nao corresponde a um motorista cadastrado
+ */
+void ModelSistemaFrota::desassociarVeiculoMotorista(const std::string& placa, const std::string &cpf){
+
+    Motorista *motorista{this->buscarMotorista(cpf)};
+
+    if(motorista == nullptr)
+        throw frota::MotoristaNaoEncontradoException{cpf};
+
+    if(!motorista->removeVeiculoMotorista(placa))
+        throw frota::VeiculoNaoEncontradoException{placa};
 }

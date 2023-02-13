@@ -3,8 +3,8 @@ nomePrograma=frota
 
 all: $(nomePrograma)
 
-$(nomePrograma): main.o Veiculo.o Carro.o Caminhao.o Moto.o Van.o Pessoa.o Motorista.o ModelSistemaFrota.o VeiculoJaCadastradoException.o MotoristaJaCadastradoException.o ViewSistemaFrota.o RegexExpressoes.o 
-	g++ -o $(nomePrograma) main.o Veiculo.o Carro.o Caminhao.o Moto.o Van.o Pessoa.o Motorista.o ModelSistemaFrota.o VeiculoJaCadastradoException.o MotoristaJaCadastradoException.o RegexExpressoes.o ViewSistemaFrota.o $(parametrosCompilacao)
+$(nomePrograma): main.o Veiculo.o Carro.o Caminhao.o Moto.o Van.o Pessoa.o Motorista.o ModelSistemaFrota.o VeiculoJaCadastradoException.o MotoristaJaCadastradoException.o ViewSistemaFrota.o VeiculoNaoEncontradoException.o MotoristaNaoEncontradoException.o RegexExpressoes.o 
+	g++ -o $(nomePrograma) main.o Veiculo.o Carro.o Caminhao.o Moto.o Van.o Pessoa.o Motorista.o ModelSistemaFrota.o VeiculoJaCadastradoException.o MotoristaJaCadastradoException.o ViewSistemaFrota.o VeiculoNaoEncontradoException.o MotoristaNaoEncontradoException.o RegexExpressoes.o $(parametrosCompilacao)
 
 main.o: main.cpp
 	g++ -c main.cpp $(parametrosCompilacao)
@@ -41,6 +41,12 @@ VeiculoJaCadastradoException.o: VeiculoJaCadastradoException.cpp VeiculoJaCadast
 
 MotoristaJaCadastradoException.o: MotoristaJaCadastradoException.cpp MotoristaJaCadastradoException.hpp
 	g++ -c MotoristaJaCadastradoException.cpp $(parametrosCompilacao)
+
+VeiculoNaoEncontradoException.o: VeiculoNaoEncontradoException.cpp VeiculoNaoEncontradoException.hpp
+	g++ -c VeiculoNaoEncontradoException.cpp $(parametrosCompilacao)
+
+MotoristaNaoEncontradoException.o: MotoristaNaoEncontradoException.cpp MotoristaNaoEncontradoException.hpp
+	g++ -c MotoristaNaoEncontradoException.cpp $(parametrosCompilacao)
 
 RegexExpressoes.o: RegexExpressoes.cpp RegexExpressoes.hpp
 	g++ -c RegexExpressoes.cpp $(parametrosCompilacao)

@@ -2,6 +2,8 @@
 
 #include "VeiculoJaCadastradoException.hpp"
 #include "MotoristaJaCadastradoException.hpp"
+#include "VeiculoNaoEncontradoException.hpp"
+#include "MotoristaNaoEncontradoException.hpp"
 
 #include <iostream>
 
@@ -291,22 +293,25 @@ void ViewSistemaFrota::selecionaMotorista(){
 
     std::cout << "====== Digite o número da operação a ser realizada ======\n"; 
     std::cout << "1 - Visualizar Motorista\n";
-    std::cout << "2 - Associar Veiculo ao Motorista\n";
-    std::cout << "5 - Remover Veiculo do Motorista\n";
+    std::cout << "3 - Associar Veiculo ao Motorista\n";
+    std::cout << "6 - Remover Veiculo do Motorista\n";
     std::cout << "7 - Voltar\n";
     std::cout << "====== Operação: ";
     std::cin >> entrada;
 
-    if(entrada != 1 && entrada != 2 && entrada != 5 && entrada != 7){
+    if(entrada != 1 && entrada != 3 && entrada != 6 && entrada != 7){
         std::cout << "$$$ERRO: Tipo Operação Inválida\n";
         return;
     }   
 
     EnumTipoOperacao op{static_cast<EnumTipoOperacao>(entrada)};
 
+    if(op == EnumTipoOperacao::SAIR)
+        return;
+
     if(op == EnumTipoOperacao::VISUALIZAR_MOTORISTAS){
         
-        const Motorista* motorista{this->modelo->buscarMotorista(cpf)};
+        const Motorista* motorista{this->modelo->getMotorista(cpf)};
 
         if(motorista == nullptr){
             std::cout << "$$$ ERRO: Motorista com CPF: " << cpf <<" não foi econtrado\n";
@@ -318,13 +323,50 @@ void ViewSistemaFrota::selecionaMotorista(){
         motorista->imprimirVeiculos();
         std::cout << std::endl;
 
+    } 
+    else{
+
+        std::cout << "====== Digite a placa do Veiculo ======\n"; 
+        std::cout << "- Placa (7 caracteres alfanumericos  do tipo 'AAA0A00', sem pontuação): ";
+        std::cin >> placa;
+
+        if(op == EnumTipoOperacao::CADASTRAR_MOTORISTA){
+
+            try{
+                this->modelo->associarVeiculoMotorista(placa, cpf);
+            } catch( VeiculoNaoEncontradoException& vneEx){
+                std::cout << "$$$ ERRO: Falha ao associar Veiculo: " << vneEx.what() << "\n";
+                std::cout << "$$ A Placa: " << vneEx.placa << " não pertence a um veiculo no sistema\n";
+                return;
+            } catch( MotoristaNaoEncontradoException& mneEx){
+                std::cout << "$$$ ERRO: Falha ao associar Veiculo: " << mneEx.what() << "\n";
+                std::cout << "$$ O CPF: " << mneEx.cpf << " não pertence a um motorista no sistema\n";
+                return;
+            }
+            catch (VeiculoJaCadastradoException &veiEx) {
+                std::cout << "$$$ ERRO: Conflito ao cadastrar Veiculo: " << veiEx.what() << "\n";
+                std::cout << "$$ Um veiculo com o Renavam: " << veiEx.renavam << " ou com a Placa: " << veiEx.placa << " ja está assosiado a esse motorista\n";
+                return;
+            } 
+
+            std::cout << "====== Veiculo associado com sucesso! ======\n"; 
+        } else if(op == EnumTipoOperacao::REMOVER_MOTORISTA){
+
+            try{
+                this->modelo->desassociarVeiculoMotorista(placa, cpf);
+            } catch( VeiculoNaoEncontradoException& vneEx){
+                std::cout << "$$$ ERRO: Falha ao desassociar Veiculo: " << vneEx.what() << "\n";
+                std::cout << "$$ A Placa: " << vneEx.placa << " não pertence a um veiculo no sistema\n";
+                return;
+            } catch( MotoristaNaoEncontradoException& mneEx){
+                std::cout << "$$$ ERRO: Falha ao desassociar Veiculo: " << mneEx.what() << "\n";
+                std::cout << "$$ O CPF: " << mneEx.cpf << " não pertence a um motorista no sistema\n";
+                return;
+            }
+
+            std::cout << "====== Veiculo desassociado com sucesso! ======\n"; 
+        }
     }
-
-
-
-    
-    
-
 }
 
 
