@@ -89,7 +89,14 @@ void Motorista::imprimeDadosPorTipoPessoa() const {
     std::cout << std::fixed << std::setprecision(2) << (float) this->calcularSalario()/100 << std::endl;
     std::cout << "* Desconto por veiculo: R$";
     std::cout << std::fixed << std::setprecision(2) << (float) this->calculaDescontoPorHora()/100 << std::endl;
-
+    std::cout << "* Taxa Total: R$";
+    std::cout << std::fixed << std::setprecision(2) << (float) this->calculaTaxaTotal()/100 << std::endl;
+    std::cout << "* Desconto Total: R$";
+    std::cout << std::fixed << std::setprecision(2) << (float) this->calculaDescontoTotal()/100 << std::endl;
+    std::cout << "* Total a pagar: R$";
+    std::cout << std::fixed << std::setprecision(2) << (float) this->calculaValorPagar()/100 << std::endl;
+    this->imprimirVeiculos();
+ 
 }
 
 /**
@@ -116,6 +123,54 @@ void Motorista::imprimirVeiculos() const{
  */
 unsigned long Motorista::calculaDescontoPorHora() const {
     return Motorista::valorDescontoHora*this->cargaHoraria*100;
+}
+
+/**
+ * Calcula desconto total.
+ * O desconto total eh a soma de todos os descontos para cada veiculo
+ * 
+ * @return unsigned long Valor do desconto total em centavos 
+ */
+unsigned long Motorista::calculaDescontoTotal() const {
+    return this->lista_veiculos.size()*this->calculaDescontoPorHora();
+}
+
+/**
+ * Calcula a taxa total a pagar
+ * A taxa total eh a soma de todas as taxas de todos os veiculos subtraido do desconto total
+ * 
+ * @return unsigned long Valor da taxa total em centavos 
+ */
+unsigned long Motorista::calculaTaxaTotal() const{
+    
+    unsigned long taxa{0};
+
+    std::list<const frota::Veiculo *>::const_iterator it;
+	for(it = this->lista_veiculos.begin(); it != this->lista_veiculos.end(); ++it){
+		taxa += (*it)->calcularTaxaVeiculo();
+	}
+
+    return taxa;
+}
+
+/**
+ * Calcula o valor a pagar (taxa total - desconto total)
+ * Se o desconto total for maior que a taxa total, o valor a pagar e zero
+ * 
+ * @return unsigned long Valor a pagar do motorista em centavos
+ */
+unsigned long Motorista::calculaValorPagar() const{
+    
+    long taxaTotal{static_cast<long>(this->calculaTaxaTotal())};
+    long descontTotal{static_cast<long>(this->calculaDescontoTotal())};
+
+    long resultado{taxaTotal - descontTotal};
+
+    if(resultado <= 0)
+        return 0;
+    
+    return static_cast<unsigned long>(resultado);
+
 }
 
 /**

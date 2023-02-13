@@ -57,8 +57,18 @@ int main(){
 		"99999999999", 800000, frota::EnumTipoCaminhao::CARRETA, 20000
 	);
 
-	modelo->cadastrarMotorista("João", "00011111111", 23, "001111111", 60, 25.50);
-	modelo->cadastrarMotorista("Maria", "00022222222", 30, "002222222", 100, 1000);
+	modelo->cadastrarMotorista("João", "11111111111", 23, "000111111", 60, 25.50);
+	modelo->associarVeiculoMotorista("AAA0A00", "11111111111");
+	modelo->associarVeiculoMotorista("DDD4D44", "11111111111");
+	modelo->associarVeiculoMotorista("FFF6F66", "11111111111");
+	modelo->associarVeiculoMotorista("HHH8H88", "11111111111");
+
+	modelo->cadastrarMotorista("Maria", "22222222222", 30, "000222222", 100, 1000);
+	modelo->associarVeiculoMotorista("AAA0A00", "22222222222");
+	modelo->associarVeiculoMotorista("CCC3C33", "22222222222");
+	modelo->associarVeiculoMotorista("EEE5E55", "22222222222");
+	modelo->associarVeiculoMotorista("GGG7G77", "22222222222");
+	modelo->associarVeiculoMotorista("III9I99", "22222222222");
 
 	// Execucao do sistema (controller)
 	EnumTipoOperacao op;

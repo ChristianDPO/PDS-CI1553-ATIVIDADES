@@ -33,6 +33,12 @@ class Veiculo{
             const std::string& chassi, const std::string& renavam, const float valorVenda
         );
 
+    public:
+        
+        virtual ~Veiculo() = default; 
+        
+        bool operator==(const Veiculo& outro) const;
+
         /**
          * Imprime os dados especificos do determinado tipo do veiculo
          * 
@@ -46,12 +52,6 @@ class Veiculo{
          * @return unsigned long O valor da taxa do veiculo em centavos
          */
         virtual unsigned long calcularTaxaVeiculo() const = 0;
-
-    public:
-        
-        virtual ~Veiculo() = default; 
-        
-        bool operator==(const Veiculo& outro) const;
 
         /**
          * Calcula o IPVA do Veiculo em centavos. Veiculos fabricados a mais de vinte anos sao isentos

@@ -25,8 +25,8 @@ class Motorista: public Pessoa{
 
     protected:
         
-        //desconto de 50 reais por hora trabalhada nas taxas dos veiculos
-        constexpr static unsigned short int valorDescontoHora{50};
+        //desconto de 10 reais por hora trabalhada nas taxas dos veiculos
+        constexpr static unsigned short int valorDescontoHora{10};
 
         unsigned long cnh; //armazenado como um numero
         unsigned short int cargaHoraria;
@@ -76,6 +76,7 @@ class Motorista: public Pessoa{
          * @return bool True se o veiculo foi encontrado e removido, False caso contrario
          */
         const bool removeVeiculoMotorista(const std::string& placa);
+
         /**
          * Calcula o valor de desconto da taxa por veiculo por hora trabalhada.
          * Esse desconto sera subtraido de cada taxa de cada veiculo do motorista
@@ -84,6 +85,30 @@ class Motorista: public Pessoa{
          */
         unsigned long calculaDescontoPorHora() const;
         
+        /**
+         * Calcula desconto total.
+         * O desconto total eh a soma de todos os descontos para cada veiculo
+         * 
+         * @return unsigned long Valor do desconto total em centavos 
+         */
+        unsigned long calculaDescontoTotal() const; 
+
+        /**
+         * Calcula a taxa total a pagar
+         * A taxa total eh a soma de todas as taxas de todos os veiculos
+         * 
+         * @return unsigned long Valor da taxa total em centavos 
+         */
+        unsigned long calculaTaxaTotal() const; 
+        
+        /**
+         * Calcula o valor a pagar (taxa total - desconto total)
+         * Se o desconto total for maior que a taxa total, o valor a pagar e zero
+         * 
+         * @return unsigned long Valor a pagar do motorista
+         */
+        unsigned long calculaValorPagar() const; 
+
         /**
          * Calcula o salario do motorista
          * 
