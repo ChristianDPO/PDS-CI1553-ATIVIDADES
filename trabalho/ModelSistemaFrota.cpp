@@ -8,6 +8,8 @@
 #include "VeiculoJaCadastradoException.hpp"
 #include "MotoristaJaCadastradoException.hpp"
 
+#include <iostream>
+
 using namespace frota;
 
 ModelSistemaFrota::ModelSistemaFrota()
@@ -15,6 +17,23 @@ ModelSistemaFrota::ModelSistemaFrota()
 } 
 
 ModelSistemaFrota::~ModelSistemaFrota(){
+
+    std::cout << "&&& Desalocando ModelSistemaFrota\n";
+    std::cout << "&& Desalocando Motoristas\n";
+
+	std::list<frota::Motorista *>::iterator it_mot;
+	for(it_mot = this->lista_motoristas->begin(); it_mot != this->lista_motoristas->end(); ++it_mot){
+		delete *it_mot;
+        it_mot = this->lista_motoristas->erase(it_mot);
+	}
+
+    std::cout << "&& Desalocando Veiculos\n";
+	std::list<frota::Veiculo *>::iterator it_vei;
+	for(it_vei = this->lista_veiculos->begin(); it_vei != this->lista_veiculos->end(); ++it_vei){
+		delete *it_vei;
+        it_vei = this->lista_veiculos->erase(it_vei);
+	}
+
 }
 
 /**

@@ -9,6 +9,7 @@ ViewSistemaFrota::ViewSistemaFrota(ModelSistemaFrota* const modelo)
 }
 
 ViewSistemaFrota::~ViewSistemaFrota(){
+    std::cout << "&&& Desalocando ViewSistemaFrota\n";
     delete this->modelo;
 }
 
