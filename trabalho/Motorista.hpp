@@ -69,8 +69,13 @@ class Motorista: public Pessoa{
          * @return void
          * @throws frota::VeiculoJaCadastradoException Se ja existe um veiculo com a placa/renavam cadastrado 
          */
-        const void adicionaVeiculoMotorista(const Veiculo* veiculo);
-
+        void adicionaVeiculoMotorista(const Veiculo* veiculo);
+        /**
+         * Remove o veiculo do Motorista
+         * @param placa string Placa do veiculo a ser removido
+         * @return bool True se o veiculo foi encontrado e removido, False caso contrario
+         */
+        const bool removeVeiculoMotorista(const std::string& placa);
         /**
          * Calcula o valor de desconto da taxa por veiculo por hora trabalhada.
          * Esse desconto sera subtraido de cada taxa de cada veiculo do motorista

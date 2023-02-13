@@ -30,9 +30,10 @@ EnumTipoOperacao ViewSistemaFrota::menuPrincipal() const {
     std::cout << "1 - Visualizar Motoristas\n";
     std::cout << "2 - Cadastrar Veiculos\n";
     std::cout << "3 - Cadastrar Motoristas\n";
+    std::cout << "4 - Selecionar Motorista (Visualisar e Associar Veiculos)\n";
     std::cout << "7 - Sair\n";
 
-    std::cout << "====== Operacao: ";
+    std::cout << "====== Operação: ";
     std::cin >> op;
 
     if(op < 0 || op > 7)
@@ -274,6 +275,58 @@ void ViewSistemaFrota::cadastroMotorista(){
     
 }
 
+/**
+ * Tela para selecionar um motorista, mostrando os seus detalhes e permetindo adicionar/remover seus veiculos
+ */
+void ViewSistemaFrota::selecionaMotorista(){
+    
+    std::string cpf;
+    std::string placa;
+
+    std::cout << "====== Buscar Motorista por CPF ======\n"; 
+    std::cout << "- CPF (11 digitos numericos, sem potuação): ";
+    std::cin >> cpf;
+
+    unsigned short int entrada;
+
+    std::cout << "====== Digite o número da operação a ser realizada ======\n"; 
+    std::cout << "1 - Visualizar Motorista\n";
+    std::cout << "2 - Associar Veiculo ao Motorista\n";
+    std::cout << "5 - Remover Veiculo do Motorista\n";
+    std::cout << "7 - Voltar\n";
+    std::cout << "====== Operação: ";
+    std::cin >> entrada;
+
+    if(entrada != 1 && entrada != 2 && entrada != 5 && entrada != 7){
+        std::cout << "$$$ERRO: Tipo Operação Inválida\n";
+        return;
+    }   
+
+    EnumTipoOperacao op{static_cast<EnumTipoOperacao>(entrada)};
+
+    if(op == EnumTipoOperacao::VISUALIZAR_MOTORISTAS){
+        
+        const Motorista* motorista{this->modelo->buscarMotorista(cpf)};
+
+        if(motorista == nullptr){
+            std::cout << "$$$ ERRO: Motorista com CPF: " << cpf <<" não foi econtrado\n";
+            return;
+        }
+
+        std::cout << "====== Detalhes do Motorista ======\n\n"; 
+        motorista->imprimeDadosPessoa();
+        motorista->imprimirVeiculos();
+        std::cout << std::endl;
+
+    }
+
+
+
+    
+    
+
+}
+
 
 /**
  * Realiza a operacao especificada, reportando em caso de erro ou sucesso
@@ -296,6 +349,10 @@ void ViewSistemaFrota::realizaOperacao(EnumTipoOperacao op){
     else if (op == EnumTipoOperacao::CADASTRAR_MOTORISTA){
         std::cout << "====== Cadastrar Motorista ======\n\n";
         this->cadastroMotorista();
+    } 
+    else if (op == EnumTipoOperacao::SELECIONAR_MOTORISTA){
+        std::cout << "====== Selecionar Motorista ======\n\n";
+        this->selecionaMotorista();
     } 
     else if (op == EnumTipoOperacao::SAIR){
         std::cout << "====== Até logo! ======\n";

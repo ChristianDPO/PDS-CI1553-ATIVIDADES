@@ -242,3 +242,21 @@ void ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsign
     //insere
     this->lista_veiculos->push_back(cam);
 } 
+
+/**
+ * Busca motorista por CPF
+ * @param cpf string CPF do motorista
+ * @return Motorista* Motorista com o CPF especificado ou nullptr
+ */
+const Motorista* ModelSistemaFrota::buscarMotorista(const std::string&cpf) const{
+
+    std::list<frota::Motorista *>::const_iterator it;
+
+    unsigned long cpfNumerico{static_cast<unsigned long>(std::stol(cpf))};
+	for(it = this->lista_motoristas->begin(); it != this->lista_motoristas->end(); ++it)
+		if ( (*it)->getCPFNumerico() == cpfNumerico){
+            return *it;
+        }
+    return nullptr;
+
+}

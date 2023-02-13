@@ -49,12 +49,28 @@ const bool Motorista::verificarVeiculoDuplicado(const Veiculo& veiculo) const {
  * @return void
  * @throws frota::VeiculoJaCadastradoException Se ja existe um veiculo com a placa/renavam cadastrado 
  */
-const void Motorista::adicionaVeiculoMotorista(const Veiculo* veiculo){
+void Motorista::adicionaVeiculoMotorista(const Veiculo* veiculo){
 
     if(this->verificarVeiculoDuplicado(*veiculo))
         throw VeiculoJaCadastradoException{veiculo->getRenavam(), veiculo->getPlaca()};
     
     this->lista_veiculos.push_back(veiculo);
+}
+
+/**
+ * Remove o veiculo do Motorista
+ * @param placa string Placa do veiculo a ser removido
+ * @return bool True se o veiculo foi encontrado e removido, False caso contrario
+ */
+const bool Motorista::removeVeiculoMotorista(const std::string& placa){
+    
+    std::list<const frota::Veiculo *>::iterator it;
+	for(it = this->lista_veiculos.begin(); it != this->lista_veiculos.end(); ++it)
+		if((*it)->getPlaca() == placa){
+            this->lista_veiculos.erase(it);
+            return true;
+        }
+    return false;
 }
 
 /**

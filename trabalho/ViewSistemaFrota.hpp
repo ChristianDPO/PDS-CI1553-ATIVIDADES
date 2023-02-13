@@ -38,6 +38,10 @@ class ViewSistemaFrota{
          */
         void cadastroMotorista();
         /**
+         * Tela para selecionar um motorista, mostrando os seus detalhes e permetindo adicionar/remover seus veiculos
+         */
+        void selecionaMotorista();
+        /**
          * Realiza a operacao especificada, reportando em caso de erro ou sucesso
          * @return void
          */

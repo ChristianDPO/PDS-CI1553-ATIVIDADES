@@ -152,6 +152,14 @@ class ModelSistemaFrota{
         const EnumTipoCaminhao tipoCaminhao, unsigned int capacidade
     ); 
 
+    /**
+     * Busca motorista por CPF
+     * @param cpf string CPF do motorista
+     * @return Motorista* Motorista com o CPF especificado ou nullptr
+     */
+    const Motorista *buscarMotorista(const std::string&cpf) const;
+
+
 };
 }
 
