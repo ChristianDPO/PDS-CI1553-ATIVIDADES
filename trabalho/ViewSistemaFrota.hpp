@@ -30,6 +30,14 @@ class ViewSistemaFrota{
          */
         void visualizarMotoristas() const;
         /**
+         * Tela de cadastrar veiculo
+         */
+        void cadastroVeiculo();
+        /**
+         * Tela de cadastrar motorista
+         */
+        void cadastroMotorista();
+        /**
          * Realiza a operacao especificada, reportando em caso de erro ou sucesso
          * @return void
          */

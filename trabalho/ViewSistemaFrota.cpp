@@ -1,5 +1,8 @@
 #include "ViewSistemaFrota.hpp"
 
+#include "VeiculoJaCadastradoException.hpp"
+#include "MotoristaJaCadastradoException.hpp"
+
 #include <iostream>
 
 using namespace frota;
@@ -70,6 +73,68 @@ void ViewSistemaFrota::visualizarMotoristas() const{
 }
 
 /**
+ * Tela de cadastrar veiculo
+ */
+void ViewSistemaFrota::cadastroVeiculo(){
+
+    std::cout << "====== Digite as informações do Veiculo ======\n"; 
+    
+}
+/**
+ * Tela de cadastrar motorista
+ */
+void ViewSistemaFrota::cadastroMotorista(){
+
+    std::string nome;
+    std::string cpf;
+    unsigned short int idade;
+    std::string cnh;
+    unsigned short int cargaHoraria;
+    float valorHora;
+
+    std::cout << "====== Digite as informações do Motorista ======\n"; 
+    
+    std::cout << "- Nome: ";
+    std::getline(std::cin >> std::ws, nome);
+
+    std::cout << "- CPF (11 digitos numericos, sem potuação): ";
+    std::cin >> cpf;
+
+    std::cout << "- Idade (18 a 120 anos): ";
+    std::cin >> idade;
+
+    std::cout << "- CNH (9 digitos numericos, sem potuação): ";
+    std::cin >> cnh;
+
+    std::cout << "- Carga Horaria Mensal (entre 1 e 250 horas): ";
+    std::cin >> cargaHoraria;
+
+    std::cout << "- Valor por Hora (entre 1 e 1000 reais por hora): ";
+    std::cin >> valorHora;
+
+    try{
+        this->modelo->cadastrarMotorista(nome, cpf, idade, cnh, cargaHoraria, valorHora);
+    } 
+    catch (std::invalid_argument &iv) {
+        std::cout << "$$$ ERRO: Um dado recebido foi invalido: " << iv.what() << "\n";
+        return;
+    } 
+    catch (MotoristaJaCadastradoException &motEx) {
+        std::cout << "$$$ ERRO: Conflito ao cadastrar Motorista: " << motEx.what() << "\n";
+        std::cout << "$$ O CPF: " << motEx.cpf << " ou A CNH: " << motEx.cnh << " ja pertencem a um veiculo no sistema\n";
+        return;
+    } 
+    catch (std::exception &ex) {
+        std::cout << "$$$ ERRO: Algo deu errado: " << ex.what() << "\n";
+        return;
+    }
+
+    std::cout << "====== Motorista cadastrado com sucesso! ======\n";
+    
+}
+
+
+/**
  * Realiza a operacao especificada, reportando em caso de erro ou sucesso
  * @return void
  */
@@ -88,6 +153,7 @@ void ViewSistemaFrota::realizaOperacao(EnumTipoOperacao op){
     } 
     else if (op == EnumTipoOperacao::CADASTRAR_MOTORISTA){
         std::cout << "====== Cadastrar Motorista ======\n\n";
+        this->cadastroMotorista();
     } 
     else if (op == EnumTipoOperacao::SAIR){
         std::cout << "====== Até logo! ======\n";
