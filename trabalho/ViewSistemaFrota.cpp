@@ -40,7 +40,7 @@ EnumTipoOperacao ViewSistemaFrota::menuPrincipal() const {
     
     system("clear");
     
-    return (EnumTipoOperacao) op;
+    return static_cast<EnumTipoOperacao>(op);
 
 }
 
@@ -77,8 +77,149 @@ void ViewSistemaFrota::visualizarMotoristas() const{
  */
 void ViewSistemaFrota::cadastroVeiculo(){
 
-    std::cout << "====== Digite as informações do Veiculo ======\n"; 
+    std::string modelo;
+    unsigned int ano;
+    std::string placa;
+    std::string chassi;
+    std::string renavam;
+    float valorVenda;
     
+    unsigned short int entrada;
+
+    std::cout << "====== Digite as informações do Veiculo ======\n"; 
+
+    std::cout << "- Modelo: ";
+    std::getline(std::cin >> std::ws,modelo);
+
+    std::cout << "- Ano (1886 ate 2023): ";
+    std::cin >> ano;
+
+    std::cout << "- Placa (7 caracteres alfanumericos  do tipo 'AAA0A00', sem pontuação): ";
+    std::cin >> placa;
+
+    std::cout << "- Chassi (17 caracteres alfanumerica do tipo '0AAAAAAAAA0000000', sem pontuação): ";
+    std::cin >> chassi;
+
+    std::cout << "- Renavam (11 digitos numericos, sem potuação): ";
+    std::cin >> renavam;
+
+    std::cout << "- Valor de Venda (em reais, entre 1000 e 800000 reais): ";
+    std::cin >> valorVenda;
+
+    std::cout << "====== Selecione o número do tipo do Veiculo ======\n";
+    std::cout << "0 - MOTO\n";
+    std::cout << "1 - CARRO\n";
+    std::cout << "2 - VAN\n";
+    std::cout << "3 - CAMINHÃO\n";
+    std::cout << "====== Tipo (número de 0 a 3): ";
+    
+    std::cin >> entrada;
+    if(entrada < 0 || entrada > 3){
+        std::cout << "$$$ERRO: Tipo de Veiculo Invalido\n";
+        return;
+    }
+
+    EnumTipoVeiculo tipoVeiculo{static_cast<EnumTipoVeiculo>(entrada)};
+    
+    EnumTipoMoto tipoMoto;
+    EnumTipoCarro tipoCarro;
+    EnumTipoCaminhao tipoCaminhao;
+    unsigned int capacidade;
+
+    try{
+
+        if(tipoVeiculo == EnumTipoVeiculo::MOTO){
+            
+            std::cout << "====== Selecione o número do tipo da Moto ======\n";
+            std::cout << "0 - SCOOTER\n";
+            std::cout << "1 - PADRAO\n";
+            std::cout << "2 - OFFROAD\n";
+            std::cout << "====== Tipo (número de 0 a 2): ";
+
+            std::cin >> entrada;
+            if(entrada < 0 || entrada > 2){
+                std::cout << "$$$ERRO: Tipo de Moto Invalido\n";
+                return;
+            }
+
+            tipoMoto = static_cast<EnumTipoMoto>(entrada);
+            this->modelo->cadastrarVeiculo(modelo, ano, placa, chassi, renavam, valorVenda, tipoMoto);
+
+        }
+        else if(tipoVeiculo == EnumTipoVeiculo::CARRO){
+            
+            std::cout << "====== Selecione o número do tipo do Carro ======\n";
+            std::cout << "0 - VIAGEM\n";
+            std::cout << "1 - ENTREGA\n";
+            std::cout << "====== Tipo (número de 0 a 1): ";
+
+            std::cin >> entrada;
+            if(entrada < 0 || entrada > 1){
+                std::cout << "$$$ERRO: Tipo de Carro Invalido\n";
+                return;
+            }   
+
+            tipoCarro = static_cast<EnumTipoCarro>(entrada);
+            this->modelo->cadastrarVeiculo(modelo, ano, placa, chassi, renavam, valorVenda, tipoCarro);
+
+        } else if(tipoVeiculo == EnumTipoVeiculo::VAN){
+            
+            std::cout << "====== Selecione o número do tipo da Van ======\n";
+            std::cout << "0 - VIAGEM\n";
+            std::cout << "1 - ENTREGA\n";
+            std::cout << "====== Tipo (número de 0 a 1): ";
+
+            std::cin >> entrada;
+            if(entrada < 0 || entrada > 1){
+                std::cout << "$$$ERRO: Tipo de Van Invalido\n";
+                return;
+            }   
+
+            tipoCarro = static_cast<EnumTipoCarro>(entrada);
+            
+            std::cout << "- Capacidade da Van (entre 1 e 2000 kg): ";
+            std::cin >> capacidade;
+            
+            this->modelo->cadastrarVeiculo(modelo, ano, placa, chassi, renavam, valorVenda, tipoCarro, capacidade);
+        } else if(tipoVeiculo == EnumTipoVeiculo::CAMINHAO){
+            
+            std::cout << "====== Selecione o número do tipo do Caminhão ======\n";
+            std::cout << "0 - FRETE\n";
+            std::cout << "1 - CARRETA\n";
+            std::cout << "====== Tipo (número de 0 a 1): ";
+
+            std::cin >> entrada;
+            if(entrada < 0 || entrada > 1){
+                std::cout << "$$$ERRO: Tipo de Caminhão Invalido\n";
+                return;
+            }   
+
+            tipoCaminhao = static_cast<EnumTipoCaminhao>(entrada);
+            
+            std::cout << "- Capacidade do Caminhao (entre 1 e 20000 kg): ";
+            std::cin >> capacidade;
+            
+            this->modelo->cadastrarVeiculo(modelo, ano, placa, chassi, renavam, valorVenda, tipoCaminhao, capacidade);
+        }
+
+    } 
+    catch (std::invalid_argument &iv) {
+        std::cout << "$$$ ERRO: Um dado recebido foi invalido: " << iv.what() << "\n";
+        return;
+    } 
+    catch (VeiculoJaCadastradoException &veiEx) {
+        std::cout << "$$$ ERRO: Conflito ao cadastrar Veiculo: " << veiEx.what() << "\n";
+        std::cout << "$$ O Renavam: " << veiEx.renavam << " ou A Placa: " << veiEx.placa << " ja pertencem a um veiculo no sistema\n";
+        return;
+    } 
+    catch (std::exception &ex) {
+        std::cout << "$$$ ERRO: Algo deu errado: " << ex.what() << "\n";
+        return;
+    }
+
+    std::cout << "====== Veiculo cadastrado com sucesso! ======\n\n";
+
+
 }
 /**
  * Tela de cadastrar motorista
@@ -129,7 +270,7 @@ void ViewSistemaFrota::cadastroMotorista(){
         return;
     }
 
-    std::cout << "====== Motorista cadastrado com sucesso! ======\n";
+    std::cout << "====== Motorista cadastrado com sucesso! ======\n\n";
     
 }
 
@@ -150,6 +291,7 @@ void ViewSistemaFrota::realizaOperacao(EnumTipoOperacao op){
     } 
     else if (op == EnumTipoOperacao::CADASTRAR_VEICULO){
         std::cout << "====== Cadastrar Veiculo ======\n\n";
+        this->cadastroVeiculo();
     } 
     else if (op == EnumTipoOperacao::CADASTRAR_MOTORISTA){
         std::cout << "====== Cadastrar Motorista ======\n\n";
