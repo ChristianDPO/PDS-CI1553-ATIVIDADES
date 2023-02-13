@@ -49,6 +49,13 @@ class Motorista: public Pessoa{
         bool operator==(const Motorista& outro) const;
 
         /**
+         * Imprime os dados dos veiculos de um motorista
+         * 
+         * @return void
+         */
+        void imprimirVeiculos() const;
+
+        /**
          * Verifica se um veiculo com a mesma placa/renavam ja esta cadastrado no sistema
          * 
          * @param veiculo Veiculo veiculo para verificar

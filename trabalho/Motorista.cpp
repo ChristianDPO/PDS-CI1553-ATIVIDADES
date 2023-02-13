@@ -73,14 +73,22 @@ void Motorista::imprimeDadosPorTipoPessoa() const {
     std::cout << std::fixed << std::setprecision(2) << (float) this->calcularSalario()/100 << std::endl;
     std::cout << "* Desconto por veiculo: R$";
     std::cout << std::fixed << std::setprecision(2) << (float) this->calculaDescontoPorHora()/100 << std::endl;
-    std::cout << "****** Veiculos Associados ******" << std::endl;
-    
 
+}
+
+/**
+ * Imprime os dados dos veiculos de um motorista
+ * 
+ * @return void
+ */
+void Motorista::imprimirVeiculos() const{
+    
+    std::cout << "------- Veiculos Associados -------" << std::endl;
     std::list<const frota::Veiculo *>::const_iterator it;
-	for(it = lista_veiculos.begin(); it != lista_veiculos.end(); ++it){
+	for(it = this->lista_veiculos.begin(); it != this->lista_veiculos.end(); ++it){
 		(*it)->imprimeDadosVeiculo();
 	}
-    std::cout << "*********************************" << std::endl;
+    std::cout << "-----------------------------------" << std::endl;
 }
 
 /**
