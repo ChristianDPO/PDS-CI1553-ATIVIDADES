@@ -2,8 +2,10 @@
 #define MOTORISTA_HPP
 
 #include "Pessoa.hpp"
+#include "Veiculo.hpp"
 
 #include <string>
+#include <list>
 
 
 namespace frota{
@@ -29,6 +31,7 @@ class Motorista: public Pessoa{
         unsigned long cnh; //armazenado como um numero
         unsigned short int cargaHoraria;
         unsigned long valorHora; //armazenado em centavos
+        std::list<const Veiculo*> lista_veiculos;
 
         /**
          * Imprime os dados especificos do determinado tipo de Pessoa
@@ -41,9 +44,25 @@ class Motorista: public Pessoa{
         Motorista(const std::string& nome, const std::string& cpf, const unsigned short int idade,
             const std::string& cnh, unsigned short int cargaHoraria, float valorHora
         );
-        virtual ~Motorista() = default;
+        virtual ~Motorista();
 
         bool operator==(const Motorista& outro) const;
+
+        /**
+         * Verifica se um veiculo com a mesma placa/renavam ja esta cadastrado no sistema
+         * 
+         * @param veiculo Veiculo veiculo para verificar
+         * @return bool True se o veiculo eh duplicado, False caso contrario
+         */
+        const bool verificarVeiculoDuplicado(const Veiculo& veiculo) const;
+
+        /**
+         * Adiciona um veiculo a lista de veiculos
+         * @param veiculo const *Veiculo Veiculo a ser adicionado
+         * @return void
+         * @throws frota::VeiculoJaCadastradoException Se ja existe um veiculo com a placa/renavam cadastrado 
+         */
+        const void adicionaVeiculoMotorista(const Veiculo* veiculo);
 
         /**
          * Calcula o valor de desconto da taxa por veiculo por hora trabalhada.

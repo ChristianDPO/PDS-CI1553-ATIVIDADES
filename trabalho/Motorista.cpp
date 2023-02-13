@@ -1,6 +1,8 @@
 #include "Motorista.hpp"
 #include "RegexExpressoes.hpp"
 
+#include "VeiculoJaCadastradoException.hpp"
+
 #include <iostream>
 #include <iomanip>
 #include <stdexcept>
@@ -17,8 +19,42 @@ Motorista::Motorista(const std::string& nome, const std::string& cpf, const unsi
     this->setValorHora(valorHora);
 }
 
+Motorista::~Motorista(){
+}
+
 bool Motorista::operator==(const Motorista& outro) const {
     return (this->cpf == outro.cpf || this->cnh == outro.cnh);
+}
+
+/**
+ * Verifica se um veiculo com a mesma placa/renavam ja esta cadastrado no sistema
+ * 
+ * @param veiculo Veiculo veiculo para verificar
+ * @return bool True se o veiculo eh duplicado, False caso contrario
+ */
+const bool Motorista::verificarVeiculoDuplicado(const Veiculo& veiculo) const {
+    
+    std::list<const frota::Veiculo *>::const_iterator it;
+
+	for(it = this->lista_veiculos.begin(); it != this->lista_veiculos.end(); ++it)
+		if (**it == veiculo)
+            return true;
+	return false;
+
+}
+
+/**
+ * Adiciona um veiculo a lista de veiculos
+ * @param veiculo const *Veiculo Veiculo a ser adicionado
+ * @return void
+ * @throws frota::VeiculoJaCadastradoException Se ja existe um veiculo com a placa/renavam cadastrado 
+ */
+const void Motorista::adicionaVeiculoMotorista(const Veiculo* veiculo){
+
+    if(this->verificarVeiculoDuplicado(*veiculo))
+        throw VeiculoJaCadastradoException{veiculo->getRenavam(), veiculo->getPlaca()};
+    
+    this->lista_veiculos.push_back(veiculo);
 }
 
 /**
@@ -37,7 +73,14 @@ void Motorista::imprimeDadosPorTipoPessoa() const {
     std::cout << std::fixed << std::setprecision(2) << (float) this->calcularSalario()/100 << std::endl;
     std::cout << "* Desconto por veiculo: R$";
     std::cout << std::fixed << std::setprecision(2) << (float) this->calculaDescontoPorHora()/100 << std::endl;
+    std::cout << "****** Veiculos Associados ******" << std::endl;
+    
 
+    std::list<const frota::Veiculo *>::const_iterator it;
+	for(it = lista_veiculos.begin(); it != lista_veiculos.end(); ++it){
+		(*it)->imprimeDadosVeiculo();
+	}
+    std::cout << "*********************************" << std::endl;
 }
 
 /**

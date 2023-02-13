@@ -79,12 +79,12 @@ const bool ModelSistemaFrota::verificarMotoristaDuplicado(const Motorista& motor
  * @param cargaHoraria unsigned short int Carga horaria mensal do Motorista (entre 1 e 250 horas)
  * @param valorHora float Valor por hora trabalhada do Motorista em reais (entre 1 e 1000 reais por hora). 
  * 
- * @return *Motorista cadastrado
+ * @return void
  * 
  * @throws std::invalid_argument Se algum dos parametros passados nao corresponde a validacao
  * @throws frota::MotoristaJaCadastradoException Se ja existe um motorista com o cpf/cnh cadastrado 
  */
-Motorista* const ModelSistemaFrota::cadastrarMotorista(const std::string& nome, const std::string& cpf, const unsigned short int idade,
+void ModelSistemaFrota::cadastrarMotorista(const std::string& nome, const std::string& cpf, const unsigned short int idade,
     const std::string& cnh, unsigned short int cargaHoraria, float valorHora
 ){
     //aqui ja valida os campos
@@ -94,8 +94,6 @@ Motorista* const ModelSistemaFrota::cadastrarMotorista(const std::string& nome, 
         throw MotoristaJaCadastradoException{cpf, cnh};
     
     this->lista_motoristas->push_back(motorista);
-
-    return motorista;
 }
 
 /**
@@ -109,12 +107,12 @@ Motorista* const ModelSistemaFrota::cadastrarMotorista(const std::string& nome, 
  * @param valorVenda float Valor da venda do veiculo (em reais). Armazenado em um unsigned int em centavos
  * @param tipoCarro EnumTipoCarro Tipo do Carro
  * 
- * @return *Veiculo Veiculo cadastrado
+ * @return void
  * 
  * @throws std::invalid_argument Se algum dos parametros passados nao corresponde a validacao
  * @throws frota::VeiculoJaCadastradoException Se ja existe um veiculo com a placa/renavam cadastrado 
  */
-Veiculo* const ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
+void ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
     const std::string& chassi, const std::string& renavam, const float valorVenda,
     const EnumTipoCarro tipoCarro
 ){
@@ -127,8 +125,6 @@ Veiculo* const ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, co
 
     //insere
     this->lista_veiculos->push_back(carro);
-
-    return carro;
 }
 
 /**
@@ -143,12 +139,12 @@ Veiculo* const ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, co
  * @param tipoCarro EnumTipoCarro Tipo do Carro
  * @param capacidade unsigned int Capacidade da Van
  * 
- * @return *Veiculo Veiculo cadastrado
+ * @return void
  * 
  * @throws std::invalid_argument Se algum dos parametros passados nao corresponde a validacao
  * @throws frota::VeiculoJaCadastradoException Se ja existe um veiculo com a placa/renavam cadastrado 
  */
-Veiculo * const ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
+void ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
     const std::string& chassi, const std::string& renavam, const float valorVenda,
     const EnumTipoCarro tipoCarro, const unsigned int capacidade
 ){
@@ -162,8 +158,6 @@ Veiculo * const ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, c
 
     //insere
     this->lista_veiculos->push_back(van);
-
-    return van;
 }
 
 /**
@@ -177,12 +171,12 @@ Veiculo * const ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, c
  * @param valorVenda float Valor da venda do veiculo (em reais). Armazenado em um unsigned int em centavos
  * @param tipoMoto EnumTipoMoto Tipo da Moto
  * 
- * @return *Veiculo Veiculo cadastrado
+ * @return void
  * 
  * @throws std::invalid_argument Se algum dos parametros passados nao corresponde a validacao
  * @throws frota::VeiculoJaCadastradoException Se ja existe um veiculo com a placa/renavam cadastrado 
  */
-Veiculo * const ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
+void ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
     const std::string& chassi, const std::string& renavam, const float valorVenda,
     const EnumTipoMoto tipoMoto
 ){
@@ -196,8 +190,6 @@ Veiculo * const ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, c
 
     //insere
     this->lista_veiculos->push_back(moto);
-
-    return moto;
 }
 
 /**
@@ -212,12 +204,12 @@ Veiculo * const ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, c
  * @param tipoCarro EnumTipoCarro Tipo do Carro
  * @param capacidade unsigned int Capacidade da Van
  * 
- * @return *Veiculo Veiculo cadastrado
+ * @return void
  * 
  * @throws std::invalid_argument Se algum dos parametros passados nao corresponde a validacao
  * @throws frota::VeiculoJaCadastradoException Se ja existe um veiculo com a placa/renavam cadastrado 
  */
-Veiculo * const ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
+void ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsigned int ano, const std::string& placa, 
     const std::string& chassi, const std::string& renavam, const float valorVenda,
     const EnumTipoCaminhao tipoCaminhao, unsigned int capacidade
 ){
@@ -230,6 +222,4 @@ Veiculo * const ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, c
 
     //insere
     this->lista_veiculos->push_back(cam);
-
-    return cam;
 } 
