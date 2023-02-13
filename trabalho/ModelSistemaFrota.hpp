@@ -13,6 +13,9 @@
 #include <list>
 
 namespace frota{
+/**
+ * Classe modelo para o sistema de frota
+ */
 class ModelSistemaFrota{
 
     private:
