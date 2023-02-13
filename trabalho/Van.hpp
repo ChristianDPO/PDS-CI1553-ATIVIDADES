@@ -15,7 +15,7 @@ namespace frota{
  * @param placa string Numero da placa do veiculo (string com 7 digitos alfanumericos)
  * @param chassi string Numero do chassi do veiculo (string com 17 digitos alfanumericos)
  * @param renavam string Numero do Renavam do veiculo (string com 11 digitos numericos). Armazenado em um unsigned long
- * @param valorVenda float Valor da venda do veiculo (em reais). Armazenado em um unsigned int em centavos
+ * @param valorVenda float Valor da venda do veiculo (em reais, entre 1000 e 800000 reais). Armazenado em um unsigned int em centavos
  * @param tipoCarro EnumTipoCarro Tipo do Van
  * @param capacidade unsigned int Capacidade da Van (entre 1 e 2000 kg)
  * 

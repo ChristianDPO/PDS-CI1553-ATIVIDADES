@@ -55,13 +55,13 @@ unsigned int Caminhao::getCapacidade() const { return this->capacidade; }
 
 /**
  * Atualiza a capacidade do Caminhao (entre 1 e 20000 kg)
- * @param capacidade unsigned int Capacidade da Van (entre 1 e 20000 kg)
+ * @param capacidade unsigned int Capacidade do Caminhao (entre 1 e 20000 kg)
  * @throws @throws std::invalid_argument Se a capacidade nao esta entre 1 e 20000 kg
  */
 void Caminhao::setCapacidade(const unsigned int capacidade){
-    if(capacidade < 1 || capacidade > 2000)
+    if(capacidade < 1 || capacidade > 20000)
         throw std::invalid_argument{
-            "Capacidade invalida (Caminhões devem ter uma capacidade entr 1 kg e 20000 kg)"
+            "Capacidade invalida (Caminhões devem ter uma capacidade entre 1 kg e 20000 kg)"
         };
     this->capacidade = capacidade;
 }
