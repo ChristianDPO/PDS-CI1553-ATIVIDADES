@@ -389,7 +389,7 @@ void ViewSistemaFrota::removeMotorista(){
     try{
         this->modelo->removerMotorista(cpf);
     } catch( MotoristaNaoEncontradoException& mneEx){
-        std::cout << "$$$ ERRO: Falha ao desassociar Veiculo: " << mneEx.what() << "\n";
+        std::cout << "$$$ ERRO: Falha ao remover Motorista: " << mneEx.what() << "\n";
         std::cout << "$$ O CPF: " << mneEx.cpf << " não pertence a um motorista no sistema\n";
         return;
     } catch( std::exception& ex){
@@ -397,6 +397,27 @@ void ViewSistemaFrota::removeMotorista(){
     }
 
     std::cout << "====== Motorista removido com sucesso! ======\n"; 
+}
+
+/**
+ * Tela para remover um motorista
+ */
+void ViewSistemaFrota::removeVeiculo(){
+
+    std::string placa;
+    
+    std::cout << "====== Digite a placa do Veiculo ======\n"; 
+    std::cout << "- Placa (7 caracteres alfanumericos  do tipo 'AAA0A00', sem pontuação): ";
+    std::cin >> placa;
+
+    try{
+        this->modelo->removerVeiculo(placa);
+    } catch( VeiculoNaoEncontradoException& vneEx){
+        std::cout << "$$$ ERRO: Falha ao remover Veiculo: " << vneEx.what() << "\n";
+        std::cout << "$$ A Placa: " << vneEx.placa << " não pertence a um veiculo no sistema\n";
+        return;
+    }
+
 }
 
 /**
@@ -427,6 +448,7 @@ void ViewSistemaFrota::realizaOperacao(EnumTipoOperacao op){
     } 
     else if (op == EnumTipoOperacao::REMOVER_VEICULO){
         std::cout << "====== Remover Veiculo ======\n\n";
+        this->removeVeiculo();
     } 
     else if (op == EnumTipoOperacao::REMOVER_MOTORISTA){
         std::cout << "====== Remover Motorista ======\n\n";

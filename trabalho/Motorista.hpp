@@ -76,7 +76,7 @@ class Motorista: public Pessoa{
          * @return bool True se o veiculo foi encontrado e removido, False caso contrario
          */
         const bool removeVeiculoMotorista(const std::string& placa);
-
+    
         /**
          * Calcula o valor de desconto da taxa por veiculo por hora trabalhada.
          * Esse desconto sera subtraido de cada taxa de cada veiculo do motorista

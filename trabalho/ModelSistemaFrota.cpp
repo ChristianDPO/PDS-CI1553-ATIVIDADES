@@ -354,3 +354,24 @@ void ModelSistemaFrota::removerMotorista(const std::string& cpf){
     this->lista_motoristas->remove(motorista);
     delete motorista;
 }
+
+/**
+ * Remove o Veiculo especificado. Tambem remove esse veiculo dos motoristas que o utilizam
+ * @param placa string Placa do Veiculo
+ * @return void
+ * @throw frota::VeiculoNaoEncontradoException Se a placa especificada nao corresponde a um veiculo cadastrado
+ */
+void ModelSistemaFrota::removerVeiculo(const std::string& placa){
+
+    Veiculo * veiculo{this->buscarVeiculo(placa)};
+
+    if(veiculo == nullptr)
+        throw frota::VeiculoNaoEncontradoException{placa};
+
+    std::list<frota::Motorista *>::iterator it;
+	for(it = this->lista_motoristas->begin(); it != this->lista_motoristas->end(); ++it)
+		(*it)->removeVeiculoMotorista(placa);
+    
+    this->lista_veiculos->remove(veiculo);
+    delete veiculo;
+}

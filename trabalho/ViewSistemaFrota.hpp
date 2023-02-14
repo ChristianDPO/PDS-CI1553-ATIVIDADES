@@ -46,6 +46,10 @@ class ViewSistemaFrota{
          */
         void removeMotorista();
         /**
+         * Tela para remover um motorista
+         */
+        void removeVeiculo();
+        /**
          * Realiza a operacao especificada, reportando em caso de erro ou sucesso
          * @return void
          */
