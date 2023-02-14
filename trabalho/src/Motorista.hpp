@@ -42,7 +42,7 @@ class Motorista: public Pessoa{
 
     public:
         Motorista(const std::string& nome, const std::string& cpf, const unsigned short int idade,
-            const std::string& cnh, unsigned short int cargaHoraria, float valorHora
+            const std::string& cnh, const unsigned short int cargaHoraria, const float valorHora
         );
         virtual ~Motorista();
 

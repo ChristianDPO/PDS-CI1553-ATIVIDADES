@@ -6,7 +6,7 @@
 
 namespace frota {
 /**
- * Classe que representa um veiculo generico
+ * Classe abstrata que representa um veiculo generico
  * 
  * @param modelo string Nome/modelo do carro
  * @param ano unsigned int Ano de fabricacao do veiculo (1886 ate 2023)
