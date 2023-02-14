@@ -9,6 +9,7 @@
 #include "MotoristaJaCadastradoException.hpp"
 #include "VeiculoNaoEncontradoException.hpp"
 #include "MotoristaNaoEncontradoException.hpp"
+#include "RegexExpressoes.hpp"
 
 #include <iostream>
 
@@ -47,7 +48,11 @@ Motorista *ModelSistemaFrota::buscarMotorista(const std::string&cpf){
 
     std::list<frota::Motorista *>::iterator it;
 
+    if(!std::regex_match(cpf, frota::RegexExpressoes::regexOnzeDigitos))
+        return nullptr;
+
     unsigned long cpfNumerico{static_cast<unsigned long>(std::stol(cpf))};
+    
 	for(it = this->lista_motoristas->begin(); it != this->lista_motoristas->end(); ++it)
 		if ( (*it)->getCPFNumerico() == cpfNumerico){
             return *it;
@@ -287,6 +292,9 @@ void ModelSistemaFrota::cadastrarVeiculo(const std::string& modelo, const unsign
 const Motorista* ModelSistemaFrota::getMotorista(const std::string&cpf) const{
 
     std::list<frota::Motorista *>::const_iterator it;
+
+    if(!std::regex_match(cpf, frota::RegexExpressoes::regexOnzeDigitos))
+        return nullptr;
 
     unsigned long cpfNumerico{static_cast<unsigned long>(std::stol(cpf))};
 	for(it = this->lista_motoristas->begin(); it != this->lista_motoristas->end(); ++it)
