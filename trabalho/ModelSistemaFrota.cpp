@@ -37,6 +37,8 @@ ModelSistemaFrota::~ModelSistemaFrota(){
         it_vei = this->lista_veiculos->erase(it_vei);
 	}
 
+    delete this->lista_veiculos;
+    delete this->lista_motoristas;
 }
 
 /**
@@ -52,7 +54,7 @@ Motorista *ModelSistemaFrota::buscarMotorista(const std::string&cpf){
         return nullptr;
 
     unsigned long cpfNumerico{static_cast<unsigned long>(std::stol(cpf))};
-    
+
 	for(it = this->lista_motoristas->begin(); it != this->lista_motoristas->end(); ++it)
 		if ( (*it)->getCPFNumerico() == cpfNumerico){
             return *it;
