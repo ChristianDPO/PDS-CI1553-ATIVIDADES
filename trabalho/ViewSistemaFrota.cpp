@@ -416,7 +416,11 @@ void ViewSistemaFrota::removeVeiculo(){
         std::cout << "$$$ ERRO: Falha ao remover Veiculo: " << vneEx.what() << "\n";
         std::cout << "$$ A Placa: " << vneEx.placa << " não pertence a um veiculo no sistema\n";
         return;
+    } catch( std::exception& ex){
+        std::cout << "$$$ ERRO: Algo deu errado: " << ex.what() << "\n";
     }
+
+    std::cout << "====== Veiculo removido com sucesso! ======\n"; 
 
 }
 
