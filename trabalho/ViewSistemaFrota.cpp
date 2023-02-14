@@ -33,6 +33,8 @@ EnumTipoOperacao ViewSistemaFrota::menuPrincipal() const {
     std::cout << "2 - Cadastrar Veiculos\n";
     std::cout << "3 - Cadastrar Motoristas\n";
     std::cout << "4 - Selecionar Motorista (Visualisar e Associar Veiculos)\n";
+    std::cout << "5 - Remover Veiculo\n";
+    std::cout << "6 - Remover Motorista\n";
     std::cout << "7 - Sair\n";
 
     std::cout << "====== Operação: ";
@@ -285,7 +287,7 @@ void ViewSistemaFrota::selecionaMotorista(){
     std::string cpf;
     std::string placa;
 
-    std::cout << "====== Buscar Motorista por CPF ======\n"; 
+    std::cout << "====== Digite o CPF do Motorista que deseja remover ======\n"; 
     std::cout << "- CPF (11 digitos numericos, sem potuação): ";
     std::cin >> cpf;
 
@@ -347,7 +349,9 @@ void ViewSistemaFrota::selecionaMotorista(){
                 std::cout << "$$$ ERRO: Conflito ao cadastrar Veiculo: " << veiEx.what() << "\n";
                 std::cout << "$$ Um veiculo com o Renavam: " << veiEx.renavam << " ou com a Placa: " << veiEx.placa << " ja está assosiado a esse motorista\n";
                 return;
-            } 
+            } catch( std::exception& ex){
+                std::cout << "$$$ ERRO: Algo deu errado: " << ex.what() << "\n";
+            }
 
             std::cout << "====== Veiculo associado com sucesso! ======\n"; 
         } else if(op == EnumTipoOperacao::REMOVER_MOTORISTA){
@@ -362,6 +366,8 @@ void ViewSistemaFrota::selecionaMotorista(){
                 std::cout << "$$$ ERRO: Falha ao desassociar Veiculo: " << mneEx.what() << "\n";
                 std::cout << "$$ O CPF: " << mneEx.cpf << " não pertence a um motorista no sistema\n";
                 return;
+            } catch( std::exception& ex){
+                std::cout << "$$$ ERRO: Algo deu errado: " << ex.what() << "\n";
             }
 
             std::cout << "====== Veiculo desassociado com sucesso! ======\n"; 
@@ -369,6 +375,29 @@ void ViewSistemaFrota::selecionaMotorista(){
     }
 }
 
+/**
+ * Tela para remover um motorista
+ */
+void ViewSistemaFrota::removeMotorista(){
+
+    std::string cpf;
+
+    std::cout << "====== Digite o CPF do Motorista que deseja remover ======\n"; 
+    std::cout << "- CPF (11 digitos numericos, sem potuação): ";
+    std::cin >> cpf;
+
+    try{
+        this->modelo->removerMotorista(cpf);
+    } catch( MotoristaNaoEncontradoException& mneEx){
+        std::cout << "$$$ ERRO: Falha ao desassociar Veiculo: " << mneEx.what() << "\n";
+        std::cout << "$$ O CPF: " << mneEx.cpf << " não pertence a um motorista no sistema\n";
+        return;
+    } catch( std::exception& ex){
+        std::cout << "$$$ ERRO: Algo deu errado: " << ex.what() << "\n";
+    }
+
+    std::cout << "====== Motorista removido com sucesso! ======\n"; 
+}
 
 /**
  * Realiza a operacao especificada, reportando em caso de erro ou sucesso
@@ -395,6 +424,13 @@ void ViewSistemaFrota::realizaOperacao(EnumTipoOperacao op){
     else if (op == EnumTipoOperacao::SELECIONAR_MOTORISTA){
         std::cout << "====== Selecionar Motorista ======\n\n";
         this->selecionaMotorista();
+    } 
+    else if (op == EnumTipoOperacao::REMOVER_VEICULO){
+        std::cout << "====== Remover Veiculo ======\n\n";
+    } 
+    else if (op == EnumTipoOperacao::REMOVER_MOTORISTA){
+        std::cout << "====== Remover Motorista ======\n\n";
+        this->removeMotorista();
     } 
     else if (op == EnumTipoOperacao::SAIR){
         std::cout << "====== Até logo! ======\n";

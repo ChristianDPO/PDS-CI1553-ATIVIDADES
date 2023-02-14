@@ -193,6 +193,16 @@ class ModelSistemaFrota{
      */
     void desassociarVeiculoMotorista(const std::string& placa, const std::string &cpf);
 
+    /**
+     * Remove o Motorista especificado
+     * @param cpf string CPF do motorista
+     * @return void
+     * @throw frota::MotoristaNaoEncontradoException Se o cpf especificado nao corresponde a um motorista cadastrado
+     */
+    void removerMotorista(const std::string& cpf);
+
+
+
 };
 }
 
